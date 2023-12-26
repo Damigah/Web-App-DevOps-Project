@@ -7,7 +7,8 @@ Welcome to the Web App DevOps Project repo! This application allows you to effic
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Technology Stack](#technology-stack)
-- [Contributors](#contributors)
+- [Technology Stack](#technology-stack)
+- [Progression](#progression)
 - [License](#license)
 
 ## Features
@@ -52,6 +53,14 @@ To run the application, you simply need to run the `app.py` script in this repos
 - **Frontend:** The user interface is designed using HTML, CSS, and JavaScript to ensure a smooth and intuitive user experience.
 
 - **Database:** The application employs an Azure SQL Database as its database system to store order-related data.
+
+## Progression
+
+### Delivery Date
+
+A delivery date column was added to the main branch into app.py and orders.html files by merging branches from feature/add-delivery-date into main. within the feature/add-delivery-date I had modified the branch to add the delivery date into both files using Visual Studio Code. After making the changes into the branch, I git add ., git commit -m "message" and utilised git push --set-upstream origin feature/add-delivery-date to set up the branch in my remote repository and git push. I made a pull request from feature/add-delivery-date into main and reviewed the changes. After being satisfied with the changes, I merge the two branches.
+
+It was then not needed to modify the files and had to revert the changes back by using git pull first to fetch the contents in the remote repository. I made a feature branch using git branch revert-delivery-date from the main branch. I use git checkout revert-delivery-date to switch into the branch and used the git log command to find the log before merging into main. When the appropiate log was found I used git revert 23c0b3 to revert the changes and git push --set-upstream origin revert-delivery-date and git push the changes into my remote repository. I made a pull request and check the changes into the main branch before merging the two branches. I check my main branch to see the changes made.
 
 ## Contributors 
 
