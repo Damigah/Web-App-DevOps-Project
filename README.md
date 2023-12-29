@@ -58,9 +58,34 @@ To run the application, you simply need to run the `app.py` script in this repos
 
 ### Delivery Date
 
-A delivery date column was added to the main branch into app.py and orders.html files by merging branches from feature/add-delivery-date into main. within the feature/add-delivery-date I had modified the branch to add the delivery date into both files using Visual Studio Code. After making the changes into the branch, I git add ., git commit -m "message" and utilised git push --set-upstream origin feature/add-delivery-date to set up the branch in my remote repository and git push. I made a pull request from feature/add-delivery-date into main and reviewed the changes. After being satisfied with the changes, I merge the two branches.
+A delivery date column was added to the main branch into **app.py** and **orders.html** files by merging branches from **feature/add-delivery-date** into **main**. Within the feature/add-delivery-date I had modified the branch to add the delivery date into both files using Visual Studio Code. After making the changes into the branch, I **git add .**, **git commit -m "message"** and utilised **git push --set-upstream origin feature/add-delivery-date** to set up the branch in my **remote repository** and **git push**. I made a **pull request** from feature/add-delivery-date into main and reviewed the changes. After being satisfied with the changes, I merge the two branches.
 
-It was then not needed to modify the files and had to revert the changes back by using git pull first to fetch the contents in the remote repository. I made a feature branch using git branch revert-delivery-date from the main branch. I use git checkout revert-delivery-date to switch into the branch and used the git log command to find the log before merging into main. When the appropiate log was found I used git revert 23c0b3 to revert the changes and git push --set-upstream origin revert-delivery-date and git push the changes into my remote repository. I made a pull request and check the changes into the main branch before merging the two branches. I check my main branch to see the changes made.
+It was then not needed to modify the files and had to **revert** the changes back by using **git pull** to fetch the contents in the **remote repository**. I made a feature branch using **git branch revert-delivery-date** from the main branch. I use **git checkout revert-delivery-date** to switch into the branch and used the **git log** command to find the log before merging into main. When the appropiate log was found I used **git revert 23c0b3** to revert the changes and **git push --set-upstream origin revert-delivery-date** and **git push** the changes into my remote repository. I made a pull request and check the changes into the main branch before merging the two branches. I check my main branch to see the changes made.
+
+### Dockerfile
+
+Creating a Dockerfile which uses all the dependencies and configurations for deployment.
+
+Step 1: Containerize the Web Application
+- Select the base of your image using the **"FROM"** command. The base of this project would be **python:3.8-slim**.
+- **"WORKDIR"** will be the working directory and in this case it will be **'/app'**.
+- To **copy** the application files you use **"COPY . /app"** as **'.'** is setting as the current directory and **'/app'** as the destination.
+- Install Python packages from **requirements.txt** to add the dependencies that is relevant for the task. **Prerequisites** provides the information what is in the the text file.
+- The Flask application should be accessed outside the container as Docker needs to listen on a specified port during runtime. We use the **"EXPOSE"** command on port **5000**.
+- To complete the image a start-up command is required. **"CMD"** would be used to start up the Flask application. This image will be using **"CMD ["python","app.py"]"** to run the Python file first.
+
+Step 2: Building the Docker Image
+- Build the image using **"docker build -t 'name of the image' ."** as I named my image **'devops'**.
+
+Step 3: Run the Container into your Local Machine
+- To test the image, use **"docker run -p 5000:5000 'name of the image'"**. This utilises **port 500** from the local machine to the container to access the application from my local development environment.
+- Use **"http://127.0.0.1:5000"** in the web browser to test if the information loads up.
+
+Step 4: Push the Image into Docker Hub
+- Tag the Docker image with the relevant information using **"docker tag 'name of the image' 'docker-hub-username'/'image-name':'tag'"**.
+- Finally, utilise **"docker push 'docker-hub-username'/'image-name':'tag'"** to push it into **Docker hub**.
+
+Please check **Dockerfile** and **requirements.txt** in the main branch for the files.
 
 ## Contributors 
 
