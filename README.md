@@ -62,7 +62,7 @@ A delivery date column was added to the main branch into **app.py** and **orders
 
 It was then not needed to modify the files and had to **revert** the changes back by using **git pull** to fetch the contents in the **remote repository**. I made a feature branch using **git branch revert-delivery-date** from the main branch. I use **git checkout revert-delivery-date** to switch into the branch and used the **git log** command to find the log before merging into main. When the appropiate log was found I used **git revert 23c0b3** to revert the changes and **git push --set-upstream origin revert-delivery-date** and **git push** the changes into my remote repository. I made a pull request and check the changes into the main branch before merging the two branches. I check my main branch to see the changes made.
 
-### Dockerfile
+### **Dockerfile**
 
 Creating a Dockerfile which uses all the dependencies and configurations for deployment.
 
@@ -86,6 +86,34 @@ Step 4: Push the Image into Docker Hub
 - Finally, utilise **"docker push 'docker-hub-username'/'image-name':'tag'"** to push it into **Docker hub**.
 
 Please check **Dockerfile** and **requirements.txt** in the main branch for the files.
+
+### **Terraform**
+
+**Networking**
+Provisioning the network for the AKS cluster is essential to make sure the networking services in Azure functions to your liking. To build the infrastructure it is advisable to use variables, main and outputs terraform files.
+
+1. Variables
+- Resource group: A container that contains the relevant Azure resources to be managed and deployed. 
+- Location: Where the service of the AKS cluster will be located.
+- Vnet address space: A range of virtual addresses that is assigned for the task to communicate with each other within the resource group.
+
+2. Main
+- Azure resource group:
+- Virtual Network (VNet):
+- Control Plane Subnet:
+- Worker Node Subnet:
+- Network Security Group (NSG):
+
+3. Outputs
+- vnet_id:
+- control_plane_subnet_id:
+- worker_node_subnet_id:
+- networking_resource_group_name:
+- aks_nsg_id:
+
+After configuring the settings, you initalise the directory using terraform init.
+
+### 
 
 ## Contributors 
 
