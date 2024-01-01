@@ -94,27 +94,28 @@ Terraform will be the foundation for provisioning an Azure Kubernetes Service (A
 Provisioning the network for the AKS cluster is essential to make sure the networking services in Azure functions to your liking. To build the infrastructure it is advisable to use variables, main and outputs terraform files.
 
 1. Variables
-- Resource group: A container that contains the relevant Azure resources to be managed and deployed. 
-- Location: Where the service of the AKS cluster will be located.
-- Vnet address space: A range of virtual addresses that is assigned for the task to communicate with each other within the resource group.
+ - Resource group: A container that contains the relevant Azure resources to be managed and deployed. 
+ - Location: Where the service of the AKS cluster will be located.
+ - Vnet address space: A range of virtual addresses that is assigned for the task to communicate with each other within the resource group.
 
 2. Main
-- Azure resource group: A container that contains the relevant Azure resources to be managed and deployed.
-- Virtual Network (VNet): Allows resources to commuicate with eachother.
-- Control Plane Subnet: Manages the resources and clusters such as nodes and pods.
-- Worker Node Subnet: A virtual Machine that processes a portion of an application's workload.
-- Network Security Group (NSG): Security rules that manages inbound and outbound traffic for several types of Azure resources.
+ - Azure resource group: A container that contains the relevant Azure resources to be managed and deployed.
+ - Virtual Network (VNet): Allows resources to commuicate with eachother.
+ - Control Plane Subnet: Manages the resources and clusters such as nodes and pods.
+ - Worker Node Subnet: A virtual Machine that processes a portion of an application's workload.
+ - Network Security Group (NSG): Security rules that manages inbound and outbound traffic for several types of Azure resources.
 
 3. Outputs
-- vnet_id: An identity of a virtual network.
-- control_plane_subnet_id: Identity of a subnet of a control plane.
-- worker_node_subnet_id: Identity of a subnet for a worker node.
-- networking_resource_group_name: Resource group name for the network aspects of the AKS cluster. 
-- aks_nsg_id: Identity for the network security group.
+ - vnet_id: An identity of a virtual network.
+ - control_plane_subnet_id: Identity of a subnet of a control plane.
+ - worker_node_subnet_id: Identity of a subnet for a worker node.
+ - networking_resource_group_name: Resource group name for the network aspects of the AKS cluster. 
+ - aks_nsg_id: Identity for the network security group.
 
 After configuring the settings, you initalise the directory using terraform init.
 
 **AKS-Cluster**
+Provisioning the cluster for the AKS cluster is essential to make sure the Kubernetes services in Azure functions how you want it. To build the infrastructure it is advisable to use variables, main and outputs terraform files.
 
 1. Variables
 - aks_cluster_name: The name of the provisioned cluster.
@@ -123,6 +124,8 @@ After configuring the settings, you initalise the directory using terraform init
 - kubernetes_version: The version of the Kubernetes cluster.
 - service_principal_client_id: This provides the Client ID for the service principal associated with the cluster.
 - service_principal_secret: This will provide the password yo access the cluster.
+
+resource_group_name, vnet_id, control_plane_subnet_id and worker_node_subnet_id are the input variables from the networking module.
 
 2. Main
 - azurerm_kubernetes_cluster: You add the variables that will associate with the name, location, resource group name, DNS prefix and the Kubernetes version
@@ -133,6 +136,8 @@ After configuring the settings, you initalise the directory using terraform init
 - aks_cluster_name: The name of the provisioned cluster.
 - aks_cluster_id: ID of the AKS cluster.
 - aks_kubeconfig: The kubernetes configuration file of the cluster. Uses kubectl to interact with and managing the AKS cluster.
+
+After configuring the settings, you initalise the directory using terraform init. The set up will be on the main branch in the **aks-terraform directory**.
 
 ## Contributors 
 
