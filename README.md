@@ -91,6 +91,7 @@ Please check **Dockerfile** and **requirements.txt** in the main branch for the 
 Terraform will be the foundation for provisioning an Azure Kubernetes Service (AKS) cluster using infrastructure as code (IaC).
 
 **Networking**
+
 Provisioning the network for the AKS cluster is essential to make sure the networking services in Azure functions to your liking. To build the infrastructure it is advisable to use variables, main and outputs terraform files.
 
 1. Variables
@@ -115,6 +116,7 @@ Provisioning the network for the AKS cluster is essential to make sure the netwo
 After configuring the settings, you initalise the directory using terraform init.
 
 **AKS-Cluster**
+
 Provisioning the cluster for the AKS cluster is essential to make sure the Kubernetes services in Azure functions how you want it. To build the infrastructure it is advisable to use variables, main and outputs terraform files.
 
 1. Variables
