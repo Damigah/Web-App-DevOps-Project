@@ -75,15 +75,15 @@ Step 1: Containerize the Web Application
 - To complete the image a start-up command is required. **"CMD"** would be used to start up the Flask application. This image will be using **"CMD ["python","app.py"]"** to run the Python file first.
 
 Step 2: Building the Docker Image
-- Build the image using **"docker build -t 'name of the image' ."** as I named my image **'devops'**.
+- Build the image using **"docker build -t {name of the image} ."** as I named my image **'devops'**.
 
 Step 3: Run the Container into your Local Machine
-- To test the image, use **"docker run -p 5000:5000 'name of the image'"**. This utilises **port 500** from the local machine to the container to access the application from my local development environment.
+- To test the image, use **"docker run -p 5000:5000 {name of the image}"**. This utilises **port 500** from the local machine to the container to access the application from my local development environment.
 - Use **"http://127.0.0.1:5000"** in the web browser to test if the information loads up.
 
 Step 4: Push the Image into Docker Hub
-- Tag the Docker image with the relevant information using **"docker tag 'name of the image' 'docker-hub-username'/'image-name':'tag'"**.
-- Finally, utilise **"docker push 'docker-hub-username'/'image-name':'tag'"** to push it into **Docker hub**.
+- Tag the Docker image with the relevant information using **"docker tag {name of the image} {docker-hub-username}/{image-name}:{tag}"**.
+- Finally, utilise **"docker push {docker-hub-username}/{image-name}:{tag}"** to push it into **Docker hub**.
 
 Please check **Dockerfile** and **requirements.txt** in the main branch for the files.
 
@@ -140,6 +140,13 @@ resource_group_name, vnet_id, control_plane_subnet_id and worker_node_subnet_id 
 - aks_kubeconfig: The kubernetes configuration file of the cluster. Uses kubectl to interact with and managing the AKS cluster.
 
 After configuring the settings, you initalise the directory using terraform init. The set up will be on the main branch in the **aks-terraform directory**.
+
+**Creating a Service Principal**
+A service principal is an identity to use services, applications and automated tools to access Azure resources. Different levels of restricted access are roles assigned by the service principal, which allows control over which resources can be accessed and at which level.
+
+```
+az ad sp create-for-rbac --name {name} --role contributor --scopes /subscriptions/{your-subscription-id}
+```
 
 ## Contributors 
 
