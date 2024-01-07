@@ -90,7 +90,7 @@ Please check **Dockerfile** and **requirements.txt** in the main branch for the 
 ### **Terraform**
 Terraform will be the foundation for provisioning an Azure Kubernetes Service (AKS) cluster using infrastructure as code (IaC).
 
-**Networking**
+**Defining Networking**
 
 Provisioning the network for the AKS cluster is essential to make sure the networking services in Azure functions to your liking. To build the infrastructure it is advisable to use variables, main and outputs terraform files.
 
@@ -113,9 +113,9 @@ Provisioning the network for the AKS cluster is essential to make sure the netwo
  - networking_resource_group_name: Resource group name for the network aspects of the AKS cluster. 
  - aks_nsg_id: Identity for the network security group.
 
-After configuring the settings, you initalise the directory using terraform init.
+After configuring the settings, you initalise the directory using **terraform init**. The set up will be on the main branch in the **networking directory**.
 
-**AKS-Cluster**
+**Defining AKS-Cluster**
 
 Provisioning the cluster for the AKS cluster is essential to make sure the Kubernetes services in Azure functions how you want it. To build the infrastructure it is advisable to use variables, main and outputs terraform files.
 
@@ -127,7 +127,7 @@ Provisioning the cluster for the AKS cluster is essential to make sure the Kuber
 - service_principal_client_id: This provides the Client ID for the service principal associated with the cluster.
 - service_principal_secret: This will provide the password yo access the cluster.
 
-resource_group_name, vnet_id, control_plane_subnet_id and worker_node_subnet_id are the input variables from the networking module.
+resource_group_name, vnet_id, control_plane_subnet_id and worker_node_subnet_id are the output variables from the networking module.
 
 2. Main
 - azurerm_kubernetes_cluster: You add the variables that will associate with the name, location, resource group name, DNS prefix and the Kubernetes version
@@ -139,7 +139,27 @@ resource_group_name, vnet_id, control_plane_subnet_id and worker_node_subnet_id 
 - aks_cluster_id: ID of the AKS cluster.
 - aks_kubeconfig: The kubernetes configuration file of the cluster. Uses kubectl to interact with and managing the AKS cluster.
 
-After configuring the settings, you initalise the directory using terraform init. The set up will be on the main branch in the **aks-terraform directory**.
+After configuring the settings, you initalise the directory using **terraform init**. The set up will be on the main branch in the **aks-cluster directory**.
+
+**Creating the Cluster**
+The inputs used to create the cluster.
+
+1. **Networking**
+- resource_group_name: "netowrking-rg"
+- location: "UK South"
+- vnet_address_space: ["10.0.0.0/16"]
+
+2. **AKS Cluster**
+- cluster_name: "terraform-aks-cluster"
+- location: "UK South"
+- dns_prefix: "myaks-project"
+- kubernetes_version: "1.26.6"
+- service_principal_client_id: Azure client ID
+- service_principal_secret: Azure client secret
+
+resource_group_name, vnet_id, control_plane_subnet_id, worker_node_subnet_id and aks_nsg_id are the output variables from the networking module.
+
+After configuring the settings, you initalise the directory using **terraform init**. The set up will be on the main branch in the **aks-terraform directory**.
 
 **Creating a Service Principal**
 A service principal is an identity to use services, applications and automated tools to access Azure resources. Different levels of restricted access are roles assigned by the service principal, which allows control over which resources can be accessed and at which level.
@@ -147,6 +167,8 @@ A service principal is an identity to use services, applications and automated t
 ```
 az ad sp create-for-rbac --name {name} --role contributor --scopes /subscriptions/{your-subscription-id}
 ```
+
+
 
 ## Contributors 
 
