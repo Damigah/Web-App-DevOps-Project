@@ -172,15 +172,19 @@ az ad sp create-for-rbac --name {name} --role contributor --scopes /subscription
 Kubernetes orchestrates containerised applications to automate scaling, software deployment and management. 
 
 **Deployment and Service Manifests**
-For the Kubernetes deployment process, a manifest file must be created which in this project is named **application-manifest.yaml**. The **flask-app-deployment** is the name for the resource deployment for managing the containerized web application. The file specified to have 2 replica pods while using the rolling strategy (When the new pods are ready they gradually switch with the old pods without any downtime) and has labels for pod management. Furthermore, a Service manifest named **flask-app-service** was used for internal communication. TCP protocol on **port 80** with a target port of **5000** is the same as the expose port in the container. The service type was set to ClusterIP for internal usage within the AKS cluster.
+
+For the Kubernetes deployment process, a manifest file must be created which in this project is named **application-manifest.yaml**. The **flask-app-deployment** is the name for the resource deployment for managing the containerized web application. The file specified to have 2 replica pods while using the rolling strategy (When the new pods are ready they gradually switch with the old pods without any downtime) and has labels for pod management. Furthermore, a Service manifest named **flask-app-service** was used for internal communication. TCP protocol on **port 80** with a target port of **5000** is the **same** as the expose port in the container. The service type was set to **ClusterIP** for internal usage within the AKS cluster.
 
 **Deployment Strategy**
+
 
 
 **Testing and Validation**
 
 
+
 **Distribution and Accessibility**
+
 
 
 ### **CI/CD Pipelines with Azure DevOps**
