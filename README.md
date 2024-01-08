@@ -145,7 +145,7 @@ After configuring the settings, you initalise the directory using **terraform in
 The inputs used to create the cluster.
 
 1. **Networking**
-- resource_group_name: "netowrking-rg"
+- resource_group_name: "networking-rg"
 - location: "UK South"
 - vnet_address_space: ["10.0.0.0/16"]
 
