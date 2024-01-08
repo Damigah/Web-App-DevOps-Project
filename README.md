@@ -56,7 +56,7 @@ To run the application, you simply need to run the `app.py` script in this repos
 
 ## Progression
 
-### Delivery Date
+### **Delivery Date**
 
 A delivery date column was added to the main branch into **app.py** and **orders.html** files by merging branches from **feature/add-delivery-date** into **main**. Within the feature/add-delivery-date I had modified the branch to add the delivery date into both files using Visual Studio Code. After making the changes into the branch, I **git add .**, **git commit -m "message"** and utilised **git push --set-upstream origin feature/add-delivery-date** to set up the branch in my **remote repository** and **git push**. I made a **pull request** from feature/add-delivery-date into main and reviewed the changes. After being satisfied with the changes, I merge the two branches.
 
@@ -168,6 +168,22 @@ A service principal is an identity to use services, applications and automated t
 az ad sp create-for-rbac --name {name} --role contributor --scopes /subscriptions/{your-subscription-id}
 ```
 
+### **Kubernetes**
+Kubernetes orchestrates containerised applications to automate scaling, software deployment and management. 
+
+**Deployment and Service Manifests**
+
+
+**Deployment Strategy**
+
+
+**Testing and Validation**
+
+
+**Distribution and Accessibility**
+
+
+### **CI/CD Pipelines with Azure DevOps**
 
 
 ## Contributors 
