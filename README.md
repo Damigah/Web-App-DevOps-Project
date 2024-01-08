@@ -173,15 +173,16 @@ Kubernetes orchestrates containerised applications to automate scaling, software
 
 **Deployment and Service Manifests**
 
-For the Kubernetes deployment process, a manifest file must be created which in this project is named **application-manifest.yaml**. The **flask-app-deployment** is the name for the resource deployment for managing the containerized web application. The file specified to have 2 replica pods while using the rolling strategy (When the new pods are ready they gradually switch with the old pods without any downtime) and has labels for pod management. Furthermore, a Service manifest named **flask-app-service** was used for internal communication. TCP protocol on **port 80** with a target port of **5000** is the **same** as the expose port in the container. The service type was set to **ClusterIP** for internal usage within the AKS cluster.
+For the Kubernetes deployment process, a manifest file must be created which in this project is named **application-manifest.yaml**. The **flask-app-deployment** is the name for the resource deployment for managing the containerized web application. The file specified to have 2 replica pods while using the rolling strategy and has labels for pod management. Furthermore, a Service manifest named **flask-app-service** was used for internal communication. TCP protocol on **port 80** with a target port of **5000** is the **same** as the expose port in the container. The service type was set to **ClusterIP** for internal usage within the AKS cluster.
 
 **Deployment Strategy**
 
-
+Rolling update is utilised because when the new pods are ready, they gradually switch with the old pods without any downtime. This allows one pod to deploy while the other becomes temporarily unavailable to maintain high availability. The Rolling Updates strategy aligns with the application's internal nature, enabling updates without disrupting ongoing operations. It guarantees a smooth transition from old to new pods, allowing efficient maintenance and continuous improvement.
 
 **Testing and Validation**
 
-
+After the application is deployed on the AKS cluster, you test and validate the reliability and the functionality. This involves checking the status of services and pods to confirm exposure is correct within the cluster.
+The user access the application by initiating port forwarding to a local machine to allow the interaction with the web application at http://127.0.0.1:5000. The testing phase focuses on the orders table and the Add Order functionality of the application to ensure proper display is present and allows an addition of a order. With validating the steps it aims to make sure that the application performed as expected in the AKS environment.
 
 **Distribution and Accessibility**
 
