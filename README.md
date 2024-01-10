@@ -190,6 +190,14 @@ For the application to be distributed within the organisation **without** depend
 
 ### **CI/CD Pipelines with Azure DevOps**
 
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/42a62a11-afc1-41ce-8a78-4c6223e7b2fd)
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/9092c9e2-beca-4498-98ba-938703672ac1)
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/a8078898-27dd-4111-8494-c58faa7598ad)
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/a9a39e00-ed32-471e-a77c-3f194cc508fb)
+
 
 ## Contributors 
 
