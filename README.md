@@ -208,6 +208,7 @@ For the application to be distributed within the organisation **without** depend
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/0526073a-c8b8-4d9c-8ede-b87656cd84dd)
 
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/14f32b57-cd88-4135-ac5e-67588100e4ba)
 
 
 
