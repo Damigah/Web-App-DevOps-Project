@@ -190,6 +190,34 @@ For the application to be distributed within the organisation **without** depend
 
 ### **CI/CD Pipelines with Azure DevOps**
 
+**Source Repository Configuration**
+
+The source code for our application is hosted on GitHub.
+
+**Starter Pipeline Template**
+
+After selecting the repository in GitHub, select the pipeline to initiate using a **Starter Pipeline template** that provides a foundation to add tasks like the Docker image and a Kubernetes file (.yaml).
+
+**Docker Hub Integration**
+
+1. **Service Connection Setup**:
+   - Generate a personal access token on Docker Hub.
+   - Configured an Azure DevOps service connection using the Docker Hub personal access token.
+
+2. **Pipeline Docker Image Build and Push**:
+   - Type in 'Docker' in the task search bar and select.
+   - Container registry: 'Docker Hub'
+   - Container repository: name of the image on Docker Hub.
+   - Docker task added to the pipeline with the 'buildandPush' command.
+   - Set a path to the Dockerfile on where it is located in the repository. The Dockerfile is located in the main branch so it was left as default.
+   - Add a tag that is relevant to the image e.g 'latest'
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/9952128e-8fa9-48d5-9658-d1dbfc2bde70)
+
+
+
+### **AKS Cluster Monitoring**
+
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/42a62a11-afc1-41ce-8a78-4c6223e7b2fd)
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/9092c9e2-beca-4498-98ba-938703672ac1)
