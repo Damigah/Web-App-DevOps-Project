@@ -199,7 +199,7 @@ The source code for our application is hosted on GitHub and select the repositor
 After selecting the repository in GitHub, select the pipeline to initiate using a **Starter Pipeline template** that provides a foundation to add tasks like Docker image and a Kubernetes file.
 
 **Pipeline Trigger**:
-- The pipeline is defaulted to automatically execute on each push to the main branch of the application repository i.e main shown in the image below.
+- The pipeline is defaulted to automatically execute on each push to the main branch of the application repository i.e main (shown in the image below).
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/9669464c-a47a-4bc6-b2e0-1e866386ce91)
 
@@ -215,12 +215,12 @@ After selecting the repository in GitHub, select the pipeline to initiate using 
 - Configured an Azure DevOps service connection using the Docker Hub personal access token.
 
 2. **Pipeline Docker Image Build and Push**:
-- Type in 'Docker' in the task search bar and select.
-- Container registry: Select a Docker registry service connection.
-- Container repository: Name of the image on Docker Hub.
-- Docker task added to the pipeline with the 'buildandPush' command.
-- Set a path to the Dockerfile on where it is located in the repository. The Dockerfile is located in the main branch so it was left as default.
-- Add a tag that is relevant to the image e.g 'latest'.
+- Type in **'Docker'** in the task search bar and select.
+- **Container registry**: Select a Docker registry service connection.
+- **Repository**: Name of the image on Docker Hub.
+- Docker task added to the pipeline with the **'buildandPush'** command.
+- Set a path to the Dockerfile on where it is located in the repository. The Dockerfile is located in the **main** branch so it was left as default.
+- Add a tag that is relevant to the image e.g **'latest'**.
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/9952128e-8fa9-48d5-9658-d1dbfc2bde70)
 
@@ -230,25 +230,25 @@ After selecting the repository in GitHub, select the pipeline to initiate using 
 - Established a service connection within Azure DevOps to link the CI/CD pipeline with the AKS cluster securely.
 
 2. **Deploy to Kubernetes Task**:
-- Type in 'Kubernetes' in the task search bar and select.
-- Modified the pipeline to include the Deploy to Kubernetes task using the 'deploy' command.
-- ConnectionType: 'azureResourceManager' since it was deployed on on AKS (Azure Kubernetes Services).
-- AzureSubscriptionConnection: choose the subscription you want to use.
-- AzureResourceGroup: The resource group you want it deployed (must match the resource group in **'main.tf'**).
-- KubernetesCluster: The name of the cluster (must match the cluster name in **'main.tf'**).
-- Manifests: Name of the file to deploy with (the file must be in your remote repository).
+- Type in **'Kubernetes'** in the task search bar and select.
+- Modified the pipeline to include the Deploy to Kubernetes task using the **'deploy'** command.
+- **ConnectionType**: 'azureResourceManager' since it was deployed on on AKS (Azure Kubernetes Services).
+- **AzureSubscriptionConnection**: choose the subscription you want to use.
+- **AzureResourceGroup**: The resource group you want it deployed (must match the resource group in **'main.tf'**).
+- **KubernetesCluster**: The name of the cluster (must match the cluster name in **'main.tf'**).
+- **Manifests**: Name of the file to deploy with (the file must be in your remote repository).
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/f5cc3d91-6409-49e8-a52d-6ad8306a06e0)
 
 **Validation Steps**
 
 1. **CI/CD Pipeline Execution**:
-- Successfully ran the CI/CD pipeline to build and push the Docker image from Docker Hub. It was then deploy to the AKS cluster.
+- Successfully **ran** the CI/CD pipeline to build and push the Docker image from Docker Hub. It was then deploy to the AKS cluster.
 
 2. **Testing the Deployed Cluster** 
-- Monitoring the status of the pod within the AKS cluster.
-- Access the application initiate port forwarding using 'kubectl'.
-- Test the application's functionality locally to ensure it operates correctly in the AKS cluster.
+- **Monitor** the status of the pod within the AKS cluster.
+- **Access** the application initiate port forwarding using **'kubectl'**.
+- **Test** the application's functionality locally to ensure it operates correctly in the AKS cluster.
 
 ### **AKS Cluster Monitoring**
 
