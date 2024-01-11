@@ -198,6 +198,18 @@ For the application to be distributed within the organisation **without** depend
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/a9a39e00-ed32-471e-a77c-3f194cc508fb)
 
+![Screenshot 2024-01-11 004139](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/082f503a-566c-4c5e-bda7-9f1d6e029b13)
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/ba97684c-5e4d-4310-83ba-36183794ab8f)
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/190e5d7e-ec5b-4cc1-b3ce-6eacad769b2b)
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/9b40aa2c-a30c-43ff-8ba4-3d02da8b32cf)
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/0526073a-c8b8-4d9c-8ede-b87656cd84dd)
+
+
+
 
 ## Contributors 
 
