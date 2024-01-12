@@ -243,22 +243,53 @@ After selecting the repository in GitHub, select the pipeline to initiate using 
 **Validation Steps**
 
 1. **CI/CD Pipeline Execution**:
-- Successfully **ran** the CI/CD pipeline to build and push the Docker image from Docker Hub. It was then deploy to the AKS cluster.
+- Successfully ran the CI/CD pipeline to build and push the Docker image from Docker Hub. It was then deploy to the AKS cluster.
 
 2. **Testing the Deployed Cluster** 
 - **Monitor** the status of the pod within the AKS cluster.
 - **Access** the application initiate port forwarding using **'kubectl'**.
 - **Test** the application's functionality locally to ensure it operates correctly in the AKS cluster.
 
-### **AKS Cluster Monitoring**
+### **AKS Cluster Monitoring and Alert**
+
+The monitoring and alerting setup for the AKS cluster is important when it comes to DevOps pipeline. It makes sure that the cluster operates efficiently and to detect potential issues to be sorted.
+
+**Metrics Explorer Charts**
+
+The charts presents details of how the cluster is behaving.
+
+1. **Average Node CPU Usage**
+
+- This collects data across all CPU node usage in the cluster.
+- The cluster in the image below is running normal as there is also spikes of low usage which is fine.
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/42a62a11-afc1-41ce-8a78-4c6223e7b2fd)
 
+2. **Average Pod Count**
+
+- It displays the average pod that are being used within the cluster.
+- It shows a constant straight line of 16 pods meaning that the pods were **not** scaled in the duration.
+
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/9092c9e2-beca-4498-98ba-938703672ac1)
+
+3. **Used Disk Percentage**
+
+- It shows the disk percentage that is being used.
+- The disk on average is being used at 9.5% meaning it is in a **stable** workload.
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/a8078898-27dd-4111-8494-c58faa7598ad)
 
+4. **Bytes Read and Written per Second**
+
+- Metrics that measures the amount of data being read from and written to a storage device.
+- 'Bytes Read per Second' is constant with a **few** spikes which is minor but as for 'Writen per Second' it **fluctuates** in between a certain limit.
+
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/a9a39e00-ed32-471e-a77c-3f194cc508fb)
+
+**Log Analytics**
+
+1. **Average Node CPU Usage Percentage per Minute**
+
 
 ![Screenshot 2024-01-11 004139](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/082f503a-566c-4c5e-bda7-9f1d6e029b13)
 
