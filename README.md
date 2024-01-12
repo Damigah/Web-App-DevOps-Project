@@ -288,18 +288,53 @@ The charts presents details of how the cluster is behaving.
 
 **Log Analytics**
 
+Log configurations that are used to analyse the cluster.
+
 1. **Average Node CPU Usage Percentage per Minute**
 
+- This configuration captures data of the CPU usage and identifying the performance of the cluster.
+- Shows a consistent pattern, but has one anomaly.
 
 ![Screenshot 2024-01-11 004139](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/082f503a-566c-4c5e-bda7-9f1d6e029b13)
 
+2. **Average Node Memory Usage Percentage per Minute**
+
+- Collects data of the memory usage of nodes which allows you to detect the performance and efficiently of the resources.
+- Illustrates data with minimal differences over time.
+
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/ba97684c-5e4d-4310-83ba-36183794ab8f)
+
+3. **Pods Counts with Phase**
+
+- Provides information on the count of pods with different phases; showing the states that it is in such as Pending, Running, or Terminating.
+- The insights into pod lifecycle illustrates the cluster's workload is distributed and consistent.
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/190e5d7e-ec5b-4cc1-b3ce-6eacad769b2b)
 
+4. **Find Warning Value in Container Logs**
+
+- Finding warning signals within container logs is crucial in order to detect issues and take reasonable adjustments.
+- The image below illustrates the code to finding the problem after running the code.
+
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/9b40aa2c-a30c-43ff-8ba4-3d02da8b32cf)
 
+5. **Monitoring Kubernetes Events**
+
+- Monitoring Kubernetes events, such as pod scheduling, scaling activities, and errors, is important to track the health and stability of the cluster.
+
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/0526073a-c8b8-4d9c-8ede-b87656cd84dd)
+
+- Assisting the chart above, they are caused by the pods being 'Unhealthy' or 'FailedScheduling' after applying the pods using CI/CD Azure DevOps.
+  - Minimum that failed: 1
+  - Maximum that failed: 8
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/c8aef58d-0e6b-4584-8192-681748a29c3f)
+
+A query was saved for each of these logs to be accessed when needed. 
+
+**Alert Configuration**
+
+
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/14f32b57-cd88-4135-ac5e-67588100e4ba)
 
