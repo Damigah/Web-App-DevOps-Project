@@ -243,32 +243,115 @@ After selecting the repository in GitHub, select the pipeline to initiate using 
 **Validation Steps**
 
 1. **CI/CD Pipeline Execution**:
-- Successfully **ran** the CI/CD pipeline to build and push the Docker image from Docker Hub. It was then deploy to the AKS cluster.
+- Successfully ran the CI/CD pipeline to build and push the Docker image from Docker Hub. It was then deploy to the AKS cluster.
 
 2. **Testing the Deployed Cluster** 
 - **Monitor** the status of the pod within the AKS cluster.
 - **Access** the application initiate port forwarding using **'kubectl'**.
 - **Test** the application's functionality locally to ensure it operates correctly in the AKS cluster.
 
-### **AKS Cluster Monitoring**
+### **AKS Cluster Monitoring and Alert**
+
+The monitoring and alerting setup for the AKS cluster is important when it comes to DevOps pipeline. It makes sure that the cluster operates efficiently and to detect potential issues to be sorted.
+
+**Metrics Explorer Charts**
+
+The charts presents details of how the cluster is behaving.
+
+1. **Average Node CPU Usage**
+
+- This collects data across all CPU node usage in the cluster.
+- The cluster in the image below is running normal as there is also spikes of low usage which is fine.
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/42a62a11-afc1-41ce-8a78-4c6223e7b2fd)
 
+2. **Average Pod Count**
+
+- It displays the average pod that are being used within the cluster.
+- It shows a constant straight line of 16 pods meaning that the pods were **not** scaled in the duration.
+
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/9092c9e2-beca-4498-98ba-938703672ac1)
+
+3. **Used Disk Percentage**
+
+- It shows the disk percentage that is being used.
+- The disk on average is being used at 9.5% meaning it is in a **stable** workload.
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/a8078898-27dd-4111-8494-c58faa7598ad)
 
+4. **Bytes Read and Written per Second**
+
+- Metrics that measures the amount of data being read from and written to a storage device.
+- 'Bytes Read per Second' is constant with a **few** spikes which is minor but as for 'Writen per Second' it **fluctuates** in between a certain limit.
+
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/a9a39e00-ed32-471e-a77c-3f194cc508fb)
+
+**Log Analytics**
+
+Log configurations that are used to analyse the cluster.
+
+1. **Average Node CPU Usage Percentage per Minute**
+
+- This configuration captures data of the CPU usage and identifying the performance of the cluster.
+- Shows a consistent pattern, but has one anomaly.
 
 ![Screenshot 2024-01-11 004139](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/082f503a-566c-4c5e-bda7-9f1d6e029b13)
 
+2. **Average Node Memory Usage Percentage per Minute**
+
+- Collects data of the memory usage of nodes which allows you to detect the performance and efficiently of the resources.
+- Illustrates data with minimal differences over time.
+
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/ba97684c-5e4d-4310-83ba-36183794ab8f)
+
+3. **Pods Counts with Phase**
+
+- Provides information on the count of pods with different phases; showing the states that it is in such as Pending, Running, or Terminating.
+- The insights into pod lifecycle illustrates the cluster's workload is distributed and consistent.
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/190e5d7e-ec5b-4cc1-b3ce-6eacad769b2b)
 
+4. **Find Warning Value in Container Logs**
+
+- Finding warning signals within container logs is crucial in order to detect issues and take reasonable adjustments.
+- The image below illustrates the code to finding the problem after running the code.
+
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/9b40aa2c-a30c-43ff-8ba4-3d02da8b32cf)
 
+5. **Monitoring Kubernetes Events**
+
+- Monitoring Kubernetes events, such as pod scheduling, scaling activities, and errors, is important to track the health and stability of the cluster.
+
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/0526073a-c8b8-4d9c-8ede-b87656cd84dd)
+
+- Assisting the chart above, they are caused by the pods being 'Unhealthy' or 'FailedScheduling' after applying the pods using CI/CD Azure DevOps.
+  - Minimum that failed: 1
+  - Maximum that failed: 8
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/c8aef58d-0e6b-4584-8192-681748a29c3f)
+
+A query was saved for each of these logs to be accessed when needed. 
+
+**Alert Configuration**
+
+Alerts had been set up to ensure that you get notified when limits were exceeded to take precautions.
+
+1. **Disk Usage Percentage Alert**
+
+- The alarm gets triggered when the usage exceeds over **90%**.
+- Checks every 5 minutes, with a 15-minute loopback.
+- Notified through email.
+
+2. **CPU and Memory Usage Percentage Alerts**
+
+- The alarm gets triggered when the usage exceeds over **80%**.
+- This will potentially affect the performance which reduces the application performance.
+
+**Response Strategies to Alarms**
+
+There are numbers of ways to respond to alarms that are triggered. They are:
+
+
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/14f32b57-cd88-4135-ac5e-67588100e4ba)
 
