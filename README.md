@@ -334,6 +334,23 @@ A query was saved for each of these logs to be accessed when needed.
 
 **Alert Configuration**
 
+Alerts had been set up to ensure that you get notified when limits were exceeded to take precautions.
+
+1. **Disk Usage Percentage Alert**
+
+- The alarm gets triggered when the usage exceeds over **90%**.
+- Checks every 5 minutes, with a 15-minute loopback.
+- Notified through email.
+
+2. **CPU and Memory Usage Percentage Alerts**
+
+- The alarm gets triggered when the usage exceeds over **80%**.
+- This will potentially affect the performance which reduces the application performance.
+
+**Response Strategies to Alarms**
+
+There are numbers of ways to respond to alarms that are triggered. They are:
+
 
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/14f32b57-cd88-4135-ac5e-67588100e4ba)
