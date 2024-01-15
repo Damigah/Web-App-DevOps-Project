@@ -37,6 +37,8 @@ For the application to succesfully run, you need to install the following packag
 - pyodbc (version 4.0.39)
 - SQLAlchemy (version 2.0.21)
 - werkzeug (version 2.2.3)
+- azure-identity (version 1.15.0)
+- azure-keyvault-secrets (version 4.7.0)
 
 ### Usage
 
@@ -169,6 +171,7 @@ az ad sp create-for-rbac --name {name} --role contributor --scopes /subscription
 ```
 
 ### **Kubernetes**
+
 Kubernetes orchestrates containerised applications to automate scaling, software deployment and management. 
 
 **Deployment and Service Manifests**
@@ -354,6 +357,27 @@ Alerts had been set up to ensure that you get notified when limits were exceeded
 There are numbers of ways to respond to alarms that are triggered. They are:
 
 ### Azure Key Vault for Secret Management
+
+**Creating an Azure Key Vault**
+
+- Locate the Key Vaults service.
+- Click on the '**+ Create**' button.
+- Choose the subscription and either select a resource group (or create one).
+- Provide a name that is unique for the Key Vault.
+- Select the region for your Key Vault.
+- Once the changes you made were done, '**Review + create**'.
+- '**Create**' to initiate the deployment of your Azure Key Vault.
+
+**Assigning RBAC Roles in Key Vault**
+
+- Select a Key Vault.
+- Select the '**Access control (IAM)**' tab from the menu.
+- Select '**+ Add button**' then choose 'Add a role assignment'.
+- Select 'Key Vault Administrator' from the list.
+- In the '**Members**', go on '**Select members**'.
+- After adding users to the Key Vault, '**Review + assign**'.
+
+
 
 
 ```
