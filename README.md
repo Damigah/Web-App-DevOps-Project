@@ -90,6 +90,7 @@ Step 4: Push the Image into Docker Hub
 Please check **Dockerfile** and **requirements.txt** in the main branch for the files.
 
 ### **Terraform**
+
 Terraform will be the foundation for provisioning an Azure Kubernetes Service (AKS) cluster using infrastructure as code (IaC).
 
 **Defining Networking**
@@ -144,6 +145,7 @@ resource_group_name, vnet_id, control_plane_subnet_id and worker_node_subnet_id 
 After configuring the settings, you initalise the directory using **terraform init**. The set up will be on the main branch in the **aks-cluster directory**.
 
 **Creating the Cluster**
+
 The inputs used to create the cluster.
 
 1. **Networking**
@@ -410,19 +412,19 @@ az identity create -g {Resource-Group-name} -n {name-the-User-Identity}
 
 Using Azure Key Vault with AKS allows application running without exposing credentials. Setting this up includes applying Managed Identity for AKS, and assigning the necessary Key Vault permissions to this managed identity.
 
-This will create a managed identity for the AKS cluster to support interactions with Azure Key Vault without exposing credentials in the application.
+This will create a managed identity for the AKS cluster to support interactions with Azure Key Vault without exposing credentials in the application:
 
 ```
  az aks update --resource-group <resource-group> --name <aks-cluster-name> --enable-managed-identity
 ```
 
-It returns information about the identity profile of the specified AKS cluster.
+It returns information about the identity profile of the specified AKS cluster:
 
 ```
 az aks show --resource-group <resource-group> --name <aks-cluster-name> --query identityProfile
 ```
 
-This is to grant the specified managed identity (identified by its client ID given after you run the command above) the "Key Vault Secrets Officer" role at the specified scope, which is an Azure Key Vault instance. This role assignment gives the managed identity the necessary permissions to manage secrets within the specified Key Vault.
+This is to grant the specified managed identity (identified by its client ID given after you run the command above) the "Key Vault Secrets Officer" role at the specified scope, which is an Azure Key Vault instance. This role assignment gives the managed identity the necessary permissions to manage secrets within the specified Key Vault:
 
 ```
 az role assignment create --role "Key Vault Secrets Officer" \
