@@ -90,6 +90,7 @@ Step 4: Push the Image into Docker Hub
 Please check **Dockerfile** and **requirements.txt** in the main branch for the files.
 
 ### **Terraform**
+
 Terraform will be the foundation for provisioning an Azure Kubernetes Service (AKS) cluster using infrastructure as code (IaC).
 
 **Defining Networking**
@@ -144,6 +145,7 @@ resource_group_name, vnet_id, control_plane_subnet_id and worker_node_subnet_id 
 After configuring the settings, you initalise the directory using **terraform init**. The set up will be on the main branch in the **aks-cluster directory**.
 
 **Creating the Cluster**
+
 The inputs used to create the cluster.
 
 1. **Networking**
@@ -358,7 +360,11 @@ There are numbers of ways to respond to alarms that are triggered. They are:
 
 ### Azure Key Vault for Secret Management
 
+Azure Key Vault is a powerful solution for a secure storage and management of sensitive information. It manages sensitive information that provides a scalable and centralised platform for safeguarding sensitive information.
+
 **Creating an Azure Key Vault**
+
+Create a Key Vault in Azure by:
 
 - Locate the Key Vaults service.
 - Click on the '**+ Create**' button.
@@ -370,6 +376,8 @@ There are numbers of ways to respond to alarms that are triggered. They are:
 
 **Assigning RBAC Roles in Key Vault**
 
+Assigning Role-Based Access Control to users by:
+
 - Select a Key Vault.
 - Select the '**Access control (IAM)**' tab from the menu.
 - Select '**+ Add button**' then choose 'Add a role assignment'.
@@ -377,26 +385,54 @@ There are numbers of ways to respond to alarms that are triggered. They are:
 - In the '**Members**', go on '**Select members**'.
 - After adding users to the Key Vault, '**Review + assign**'.
 
+**Adding Secrets in Key Vault**
 
+The following steps shows how to add secrets:
 
+- Locate your key Vault and select the **Secrets** tab.
+- Click on **+ Generate/Import**. You should see a page to configure your secret.
+- Create 4 secrets of the environment variables.
+    - Add a name for the secrets.
+    - Add a secret value which acts as a password.
+    - After providing the appropiate name and the correct secret values, you create the secret.
+
+![Screenshot 2024-01-15 195932](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/500c5bef-b930-4f69-9142-0199346e847e)
+
+**User-Assigned Managed Identity**
+
+It is a secure access to various Azure services. Identities can then be used to authenticate and authorize access to other Azure resources.
+
+To create a user-assigned managed identity, use the following command:
+
+```
+az identity create -g {Resource-Group-name} -n {name-the-User-Identity}
+```
+
+**Integrating Azure Key Vault with AKS**
+
+Using Azure Key Vault with AKS allows application running without exposing credentials. Setting this up includes applying Managed Identity for AKS, and assigning the necessary Key Vault permissions to this managed identity.
+
+This will create a managed identity for the AKS cluster to support interactions with Azure Key Vault without exposing credentials in the application:
 
 ```
  az aks update --resource-group <resource-group> --name <aks-cluster-name> --enable-managed-identity
 ```
 
-```
-az aks nodepool upgrade --resource-group <resource-group> --cluster-name <aks-cluster-name> --name <nodepool-name>
-```
+It returns information about the identity profile of the specified AKS cluster:
 
 ```
 az aks show --resource-group <resource-group> --name <aks-cluster-name> --query identityProfile
 ```
+
+This is to grant the specified managed identity (identified by its client ID given after you run the command above) the "Key Vault Secrets Officer" role at the specified scope, which is an Azure Key Vault instance. This role assignment gives the managed identity the necessary permissions to manage secrets within the specified Key Vault:
 
 ```
 az role assignment create --role "Key Vault Secrets Officer" \
 --assignee <managed-identity-client-id> \
 --scope subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.KeyVault/vaults/{key-vault-name}
 ```
+
+
 
 ## Contributors 
 
