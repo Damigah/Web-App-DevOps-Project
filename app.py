@@ -24,8 +24,8 @@ app = Flask(__name__)
 # database connection 
 server = secret_client.get_secret("server-name").value
 database = secret_client.get_secret("database-name").value
-username = secret_client.get_secret("username").value
-password = secret_client.get_secret("password").value
+username = secret_client.get_secret("server-username").value
+password = secret_client.get_secret("server-password").value
 driver= '{ODBC Driver 18 for SQL Server}'
 
 # Create the connection string
