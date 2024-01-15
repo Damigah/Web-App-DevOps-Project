@@ -15,9 +15,6 @@ key_vault_url = "https://my-aks-keys.vault.azure.net/"
 credential = ManagedIdentityCredential()
 secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
 
-# Access the secret values from Key Vault
-#secret = secret_client.get_secret("secret-name")
-
 # Initialise Flask App
 app = Flask(__name__)
 
