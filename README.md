@@ -342,6 +342,8 @@ Alerts had been set up to ensure that you get notified when limits were exceeded
 - Checks every 5 minutes, with a 15-minute loopback.
 - Notified through email.
 
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/14f32b57-cd88-4135-ac5e-67588100e4ba)
+
 2. **CPU and Memory Usage Percentage Alerts**
 
 - The alarm gets triggered when the usage exceeds over **80%**.
@@ -351,11 +353,26 @@ Alerts had been set up to ensure that you get notified when limits were exceeded
 
 There are numbers of ways to respond to alarms that are triggered. They are:
 
+### Azure Key Vault for Secret Management
 
 
-![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/14f32b57-cd88-4135-ac5e-67588100e4ba)
+```
+ az aks update --resource-group <resource-group> --name <aks-cluster-name> --enable-managed-identity
+```
 
+```
+az aks nodepool upgrade --resource-group <resource-group> --cluster-name <aks-cluster-name> --name <nodepool-name>
+```
 
+```
+az aks show --resource-group <resource-group> --name <aks-cluster-name> --query identityProfile
+```
+
+```
+az role assignment create --role "Key Vault Secrets Officer" \
+--assignee <managed-identity-client-id> \
+--scope subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.KeyVault/vaults/{key-vault-name}
+```
 
 ## Contributors 
 
