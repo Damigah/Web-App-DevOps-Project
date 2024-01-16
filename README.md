@@ -163,9 +163,10 @@ The inputs used to create the cluster.
 
 resource_group_name, vnet_id, control_plane_subnet_id, worker_node_subnet_id and aks_nsg_id are the output variables from the networking module.
 
-After configuring the settings, you initalise the directory using `terraform init`. The set up will be on the main branch in the `aks-terraform` directory.
+After configuring the settings, you initalise the directory using `terraform init`. The set up will be on the main branch in the `aks-terraform` directory. Once they are all initalised, `terraform apply` to create the cluster in Azure using AKS (Azure Kuberenetes Services).
 
 **Creating a Service Principal**
+
 A service principal is an identity to use services, applications and automated tools to access Azure resources. Different levels of restricted access are roles assigned by the service principal, which allows control over which resources can be accessed and at which level.
 
 ```
