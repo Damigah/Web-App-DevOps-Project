@@ -206,6 +206,64 @@ For the Kubernetes deployment process, a manifest file must be created which in 
 After the application is deployed on the AKS cluster, you test and validate the reliability and the functionality. This involves checking the status of services and pods to confirm exposure is correct within the cluster.
 The user access the application by initiating **port forwarding** to a local machine to allow the interaction with the web application at `http://127.0.0.1:5000`. The testing phase focuses on the orders table and the add order functionality of the application to ensure proper display is present and allows an addition of a order. With validating the steps it aims to make sure that the application performs as expected in the AKS environment.
 
+### **Hands-on Testing with Kubernetes**
+
+The following commands are used to test
+
+Connect the cluster to your local machine so you can have access to it:
+
+```
+az aks get-credentials --resource-group [resource_group_name] --name [aks_cluster_name]
+```
+
+Check the current context:
+
+```
+kubectl config get-contexts
+```
+
+Alternatively to check the cluster you are on:
+
+```
+kubectl config current-context
+```
+
+(Optional) If you are not in the current context that you had deployed use the command below to switch:
+
+```
+kubectl config use-context {your-aks-context-name}
+```
+
+To check the status of the services:
+
+```
+kubectl get services
+```
+
+Once you are on the correct context, apply the pods into the cluster:
+
+```
+kubectl apply -f {your-manifest-file.yaml}
+```
+
+Check the pods if they are running using:
+
+```
+Kubectl get pods
+```
+
+Once the pods are in a running state log in to one of the pods using:
+
+```
+kubectl port-forward {pod-name} 5000:5000
+```
+
+Finally, log in via HTTP:
+
+```
+http://127.0.0.1:5000/
+```
+
 ### **Distribution and Accessibility**
 
 For the application to be distributed within the organisation **without** depending on port forwarding, the user would utilise a **Load Balancer** to expose the service externally or a **Ingress resource**. This would make the application accessible to other **internal users** securely. For **external access**, users would go through extra security measures such as authentication and authorisation, possibly using tools like **OAuth** (authorisation to another application) or **Azure AD** (Azure Active Directory). Consideration for network policies and secure communication (HTTPS) would be essential to protect the application and its data from potential external threats. Documentation and communication channels would be established to guide users on accessing the application securely.
