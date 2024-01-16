@@ -62,7 +62,7 @@ To run the application, you simply need to run the `app.py` script in this repos
 
 **Making Changes in the Main Branch**
 
-A delivery date column was added to the main branch into `app.py` and `orders.html` files by merging branches from `feature/add-delivery-date` into `main`. Within the feature/add-delivery-date modified the branch to add the delivery date into both files using Visual Studio Code/Git Bash. After making the changes into the branch, utilise `git add . `, `git commit -m "message"` and use `git push --set-upstream origin feature/add-delivery-date` to set up the branch in the **remote repository** and `git push`. Make a **pull request** from `feature/add-delivery-date` into `main` and reviewed the changes. After being satisfied with the changes, merge the two branches.
+A delivery date column was added to the main branch into `app.py` and `orders.html` files by merging branches from `feature/add-delivery-date` into `main`. Within the `feature/add-delivery-date` modified the branch to add the delivery date into both files using Visual Studio Code/Git Bash. After making the changes into the branch, utilise `git add . `, `git commit -m "message"` and use `git push --set-upstream origin feature/add-delivery-date` to set up the branch in the **remote repository** and `git push`. Make a **pull request** from `feature/add-delivery-date` into `main` and reviewed the changes. After being satisfied with the changes, merge the two branches.
 
 **Reverting Changes**
 
@@ -183,7 +183,7 @@ Kubernetes orchestrates containerised applications to automate scaling, software
 
 **Deployment and Service Manifests**
 
-For the Kubernetes deployment process, a manifest file must be created which in this project is named **application-manifest.yaml**. The **flask-app-deployment** is the name for the resource deployment for managing the containerised web application. The file specified to have 2 replica pods while using the rolling strategy and has labels for pod management. Furthermore, a Service manifest named **flask-app-service** was used for internal communication. TCP protocol on **port 80** with a target port of **5000** is the **same** as the expose port in the container. The service type was set to **ClusterIP** for internal usage within the AKS cluster.
+For the Kubernetes deployment process, a manifest file must be created which in this project is named `application-manifest.yaml`. The **flask-app-deployment** is the name for the resource deployment for managing the containerised web application. The file specified to have 2 replica pods while using the rolling strategy and has labels for pod management. Furthermore, a Service manifest named **flask-app-service** was used for internal communication. TCP protocol on **port 80** with a target port of **5000** is the **same** as the expose port in the container. The service type was set to **ClusterIP** for internal usage within the AKS cluster.
 
 **Deployment Strategy**
 
@@ -192,7 +192,7 @@ For the Kubernetes deployment process, a manifest file must be created which in 
 **Testing and Validation**
 
 After the application is deployed on the AKS cluster, you test and validate the reliability and the functionality. This involves checking the status of services and pods to confirm exposure is correct within the cluster.
-The user access the application by initiating **port forwarding** to a local machine to allow the interaction with the web application at **http://127.0.0.1:5000**. The testing phase focuses on the orders table and the add order functionality of the application to ensure proper display is present and allows an addition of a order. With validating the steps it aims to make sure that the application performs as expected in the AKS environment.
+The user access the application by initiating **port forwarding** to a local machine to allow the interaction with the web application at `http://127.0.0.1:5000`. The testing phase focuses on the orders table and the add order functionality of the application to ensure proper display is present and allows an addition of a order. With validating the steps it aims to make sure that the application performs as expected in the AKS environment.
 
 **Distribution and Accessibility**
 
@@ -244,8 +244,8 @@ After selecting the repository in GitHub, select the pipeline to initiate using 
 - Modified the pipeline to include the Deploy to Kubernetes task using the **'deploy'** command.
 - **ConnectionType**: 'azureResourceManager' since it was deployed on on AKS (Azure Kubernetes Services).
 - **AzureSubscriptionConnection**: choose the subscription you want to use.
-- **AzureResourceGroup**: The resource group you want it deployed (must match the resource group in **'main.tf'**).
-- **KubernetesCluster**: The name of the cluster (must match the cluster name in **'main.tf'**).
+- **AzureResourceGroup**: The resource group you want it deployed (must match the resource group in `main.tf`).
+- **KubernetesCluster**: The name of the cluster (must match the cluster name in `main.tf`).
 - **Manifests**: Name of the file to deploy with (the file must be in your remote repository).
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/f5cc3d91-6409-49e8-a52d-6ad8306a06e0)
@@ -366,16 +366,16 @@ There are numbers of ways to respond to alarms that are triggered. They are:
 1. Monitoring
    - Monitor consistently using Azure Monitor, Grafana, Prometheus, or other monitoring solutions.
    - Set up alert rules for key metrics, such as CPU utilization, memory usage, disk I/O, pod health, and AKS-specific metrics.
-3. Scaling Resources
+2. Scaling Resources
    - Scale the AKS cluster to adjust the number of nodes based on workload requirements.
    - Apply Cluster Autoscaler to dynamically adjust the number of nodes in the AKS cluster in response to resource demands.
-5. Audits
+3. Audits
    - Conduct regular audits of AKS configurations and security settings.
    - Review and update alerting thresholds and response procedures based on the change of requirements.
-7. Troubleshooting Procedures
+4. Troubleshooting Procedures
    - Utilise Azure Kubernetes Service Diagnostic (AKS-Diag) for automated cluster diagnostics.
    - Use Azure Monitor logs and insights to identify and troubleshoot issues.
-9. Documentation
+5. Documentation
     - Document common issues for troubleshooting.
     - Note down the steps taken during incident response for analysis to respond efficiently if it occurs.
 
@@ -475,8 +475,8 @@ After installing the packages, add this to the top of Python script to activate 
 
 After installing the dependancies, you need to add them in your `requirements.txt` file in order for it to work. Use the command `conda list` to showcase your packages in the current environment. The packages you need to find are:
 
-- azure-identity
-- azure-keyvault-secrets
+- **azure-identity**
+- **azure-keyvault-secrets**
 
 They will both list the version next to them to use.
 
