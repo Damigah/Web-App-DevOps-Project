@@ -395,8 +395,14 @@ The following steps shows how to add secrets:
     - Add a name for the secrets.
     - Add a secret value which acts as a password.
     - After providing the appropiate name and the correct secret values, you create the secret.
+- Make sure that they both the secrets and database credentials in `app.py` have the same name in order to integrate with each other.
 
+The secrets in Azure key Vault:
 ![Screenshot 2024-01-15 195932](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/500c5bef-b930-4f69-9142-0199346e847e)
+
+The database connection in `app.py`:
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/72a7847a-0396-43d3-a724-19a20fc415b8)
 
 **User-Assigned Managed Identity**
 
@@ -432,6 +438,38 @@ az role assignment create --role "Key Vault Secrets Officer" \
 --scope subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.KeyVault/vaults/{key-vault-name}
 ```
 
+**Python Libaries To Add**
+
+In order for the key vault and Azure identity to work in Python, install the following:
+
+- pip install azure-identity
+- pip install azure-keyvault-secrets
+
+After installing the packages, add this to the top of Python script to activate the packages:
+
+- from azure.identity import ManagedIdentityCredential
+- from azure.keyvault.secrets import SecretClient
+
+**Requirements To Add**
+
+After installing the dependancies, you need to add them in your `requirements.txt` file in order for it to work. Use the command `conda list` to showcase your packages in the current environment. The packages you need to find are:
+
+- azure-identity
+- azure-keyvault-secrets
+
+They will both list the version next to them to use.
+
+**Testing To See If It Works**
+
+- After making all the changes, push the modified files of `app.py` and `requirements.txt` onto the main branch. This will automatically run the pipeline in Azure DevOps because the trigger was set to '**main**'. 
+- Delete the old pods in order for it to use the new pods.
+- Use the command `kubectl port-forward {name-of-pod} 5000:5000` to access the application.
+- Add a new order to see if it will intract with the database in which it got stored.
+- Ask a colleague to see if they see your order on their screen (optional).
+
+### The Architecture of The Project
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/69d073f5-e76e-4e57-9df9-61f07ac03f67)
 
 
 ## Contributors 
