@@ -8,7 +8,15 @@ Welcome to the Web App DevOps Project repo! This application allows you to effic
 - [Getting Started](#getting-started)
 - [Technology Stack](#technology-stack)
 - [Technology Stack](#technology-stack)
-- [Progression](#progression)
+- [Delivery Date](#Delivery Date)
+- [Dockerfile](#Dockerfile)
+- [Terraform](#Terraform)
+- [Kubernetes](#Kubernetes)
+- [CI/CD Pipelines with Azure DevOps](#CI/CD Pipelines with Azure DevOps)
+- [AKS Cluster Monitoring and Alert](#AKS Cluster Monitoring and Alert)
+- [Azure Key Vault for Secret Management](#Azure Key Vault for Secret Management)
+- [Testing Phase](#Testing Phase)
+- [The Architecture of The Project](#The Architecture of The Project)
 - [License](#license)
 
 ## Features
@@ -56,9 +64,7 @@ To run the application, you simply need to run the `app.py` script in this repos
 
 - **Database:** The application employs an Azure SQL Database as its database system to store order-related data.
 
-## Progression
-
-### **Delivery Date**
+## Delivery Date
 
 **Making Changes in the Main Branch**
 
@@ -66,9 +72,9 @@ A delivery date column was added to the main branch into `app.py` and `orders.ht
 
 **Reverting Changes**
 
-It was then not needed to modify the files and had to **revert** the changes back by using `git pull` to fetch the contents in the **remote repository**. Make a feature branch using `git branch revert-delivery-date` from the main branch. Use `git checkout revert-delivery-date` to switch into the branch and used the `git log` command to find the log before merging into `main`. When the appropiate log was found used `git revert '{number-of-revert}` to revert the changes and `git push --set-upstream origin revert-delivery-date` and `git push` the changes into the remote repository. Make a pull request and check the changes into the main branch before merging the two branches. Check out the `main` branch to see the changes made.
+It was then not needed to modify the files and had to **revert** the changes back by using `git pull` to fetch the contents in the **remote repository**. Make a feature branch using `git branch revert-delivery-date` from the main branch. Use `git checkout revert-delivery-date` to switch into the branch and used the `git log` command to find the log before merging into `main`. When the appropiate log was found used `git revert {number-of-revert}` to revert the changes and `git push --set-upstream origin revert-delivery-date` and `git push` the changes into the remote repository. Make a pull request and check the changes into the main branch before merging the two branches. Check out the `main` branch to see the changes made.
 
-### **Dockerfile**
+## Dockerfile
 
 Creating a Dockerfile which uses all the dependencies and configurations for deployment.
 
@@ -93,7 +99,7 @@ Step 4: Push the Image into Docker Hub
 
 Please check `Dockerfile` and `requirements.txt` in the main branch for the files.
 
-### **Terraform**
+## Terraform
 
 Terraform will be the foundation for provisioning an Azure Kubernetes Service (AKS) cluster using infrastructure as code (IaC).
 
@@ -177,7 +183,7 @@ A service principal is an identity to use services, applications and automated t
 az ad sp create-for-rbac --name {name} --role contributor --scopes /subscriptions/{your-subscription-id}
 ```
 
-### **Kubernetes**
+## Kubernetes
 
 Kubernetes orchestrates containerised applications to automate scaling, software deployment and management. 
 
@@ -198,7 +204,7 @@ The user access the application by initiating **port forwarding** to a local mac
 
 For the application to be distributed within the organisation **without** depending on port forwarding, the user would utilise a **Load Balancer** to expose the service externally or a **Ingress resource**. This would make the application accessible to other **internal users** securely. For **external access**, users would go through extra security measures such as authentication and authorisation, possibly using tools like **OAuth** (authorisation to another application) or **Azure AD** (Azure Active Directory). Consideration for network policies and secure communication (HTTPS) would be essential to protect the application and its data from potential external threats. Documentation and communication channels would be established to guide users on accessing the application securely.
 
-### **CI/CD Pipelines with Azure DevOps**
+## CI/CD Pipelines with Azure DevOps
 
 **Source Repository Configuration**
 
@@ -260,7 +266,7 @@ After selecting the repository in GitHub, select the pipeline to initiate using 
 - **Access** the application initiate port forwarding using **'kubectl'**.
 - **Test** the application's functionality locally to ensure it operates correctly in the AKS cluster.
 
-### **AKS Cluster Monitoring and Alert**
+## AKS Cluster Monitoring and Alert
 
 The monitoring and alerting setup for the AKS cluster is important when it comes to DevOps pipeline. It makes sure that the cluster operates efficiently and to detect potential issues to be sorted.
 
@@ -379,7 +385,7 @@ There are numbers of ways to respond to alarms that are triggered. They are:
     - Document common issues for troubleshooting.
     - Note down the steps taken during incident response for analysis to respond efficiently if it occurs.
 
-### Azure Key Vault for Secret Management
+## Azure Key Vault for Secret Management
 
 Azure Key Vault is a powerful solution for a secure storage and management of sensitive information. It manages sensitive information that provides a scalable and centralised platform for safeguarding sensitive information.
 
@@ -437,7 +443,7 @@ az identity create -g {Resource-Group-name} -n {name-the-User-Identity}
 
 **Integrating Azure Key Vault with AKS**
 
-Using Azure Key Vault with AKS allows application running without exposing credentials. Setting this up includes applying Managed Identity for AKS, and assigning the necessary Key Vault permissions to this managed identity.
+Using Azure Key Vault with AKS allows application running **without** exposing credentials. Setting this up includes applying Managed Identity for AKS, and assigning the necessary Key Vault permissions to the managed identity.
 
 This will create a managed identity for the AKS cluster to support interactions with Azure Key Vault without exposing credentials in the application:
 
@@ -451,7 +457,7 @@ It returns information about the identity profile of the specified AKS cluster:
 az aks show --resource-group <resource-group> --name <aks-cluster-name> --query identityProfile
 ```
 
-This is to grant the specified managed identity (identified by its client ID given after you run the command above) the "Key Vault Secrets Officer" role at the specified scope, which is an Azure Key Vault instance. This role assignment gives the managed identity the necessary permissions to manage secrets within the specified Key Vault:
+This is to grant the specified managed identity (identified by its client ID given after you run the command above) the "**Key Vault Secrets Officer**" role at the specified scope, which is an Azure Key Vault instance. This role assignment gives the managed identity the necessary permissions to manage secrets within the specified Key Vault:
 
 ```
 az role assignment create --role "Key Vault Secrets Officer" \
@@ -463,13 +469,13 @@ az role assignment create --role "Key Vault Secrets Officer" \
 
 In order for the key vault and Azure identity to work in Python, install the following:
 
-- pip install azure-identity
-- pip install azure-keyvault-secrets
+- **pip install azure-identity**
+- **pip install azure-keyvault-secrets**
 
 After installing the packages, add this to the top of Python script to activate the packages:
 
-- from azure.identity import ManagedIdentityCredential
-- from azure.keyvault.secrets import SecretClient
+- **from azure.identity import ManagedIdentityCredential**
+- **from azure.keyvault.secrets import SecretClient**
 
 **Requirements To Add**
 
@@ -480,7 +486,7 @@ After installing the dependancies, you need to add them in your `requirements.tx
 
 They will both list the version next to them to use.
 
-**Testing To See If It Works**
+## Testing Phase
 
 - After making all the changes, push the modified files of `app.py` and `requirements.txt` onto the main branch. This will automatically run the pipeline in Azure DevOps because the trigger was set to '**main**'. 
 - Delete the old pods in order for it to use the new pods.
@@ -488,10 +494,9 @@ They will both list the version next to them to use.
 - Add a new order to see if it will intract with the database in which it got stored.
 - Ask a colleague to see if they see your order on their screen (optional).
 
-### The Architecture of The Project
+## The Architecture of The Project
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/69d073f5-e76e-4e57-9df9-61f07ac03f67)
-
 
 ## Contributors 
 
