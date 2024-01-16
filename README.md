@@ -514,6 +514,8 @@ Create a Key Vault in Azure by:
 - Once the changes you made were done, '**Review + create**' to double check the settings.
 - '**Create**' to initiate the deployment of your Azure Key Vault.
 
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/b07bb753-1978-4594-ba0a-f03303ef924f)
+
 ### **Assigning RBAC Roles in Key Vault**
 
 Assigning Role-Based Access Control to users by:
@@ -524,6 +526,10 @@ Assigning Role-Based Access Control to users by:
 - Select 'Key Vault Administrator' from the list.
 - In the '**Members**', go on '**Select members**'.
 - After adding users to the Key Vault, '**Review + assign**'.
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/88f84058-b855-4542-924f-9b7248b894b5)
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/b3cbe389-0b9d-41d5-b6c8-587b0163950c)
 
 ### **Adding Secrets in Key Vault**
 
@@ -536,6 +542,8 @@ The following steps shows how to add secrets:
     - Add a secret value which acts as a password.
     - After providing the appropiate name and the correct secret values, you create the secret.
 - Make sure that they both the secrets and database credentials in `app.py` have the same name in order to integrate with each other.
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/425400bf-6772-4fdf-bfa1-c45ccb21c253)
 
 The secrets in Azure key Vault:
 
