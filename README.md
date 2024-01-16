@@ -72,11 +72,11 @@ To run the application, you simply need to run the `app.py` script in this repos
 
 ### **Making Changes in the Main Branch**
 
-A delivery date column was added to the main branch into `app.py` and `orders.html` files by merging branches from `feature/add-delivery-date` into `main`. Within the `feature/add-delivery-date` modified the branch to add the delivery date into both files using Visual Studio Code/Git Bash. After making the changes into the branch, utilise `git add . `, `git commit -m "message"` and use `git push --set-upstream origin feature/add-delivery-date` to set up the branch in the **remote repository** and `git push`. Make a **pull request** from `feature/add-delivery-date` into `main` and reviewed the changes. After being satisfied with the changes, merge the two branches.
+A delivery date column was added to the main branch into `app.py` and `orders.html` files by creating and merging branches from `feature/add-delivery-date` into `main`. Within the `feature/add-delivery-date` modify the branch to add the delivery date into both files using Visual Studio Code/Git Bash. After making the changes into the branch, utilise `git add . ` to **stage** the changes, `git commit -m "message"` to the **local** repository and use `git push --set-upstream origin feature/add-delivery-date` to set up the branch in the **remote repository** then Finally `git push`. Make a **pull request** from `feature/add-delivery-date` into `main` and reviewed the changes. After being satisfied with the changes, merge the two branches.
 
 ### **Reverting Changes**
 
-It was then not needed to modify the files and had to **revert** the changes back by using `git pull` to fetch the contents in the **remote repository**. Make a feature branch using `git branch revert-delivery-date` from the main branch. Use `git checkout revert-delivery-date` to switch into the branch and used the `git log` command to find the log before merging into `main`. When the appropiate log was found used `git revert {number-of-revert}` to revert the changes and `git push --set-upstream origin revert-delivery-date` and `git push` the changes into the remote repository. Make a pull request and check the changes into the main branch before merging the two branches. Check out the `main` branch to see the changes made.
+It was then not needed to modify the files and had to **revert** the changes back by using `git pull` to fetch the contents in the **remote repository** (common practice when working in a group). Make a feature branch using `git branch revert-delivery-date` from the main branch. Use `git checkout revert-delivery-date` to switch into the branch and used the `git log` command to find the log before merging into `main`. When the appropiate log was found use `git revert {number-of-revert}` to revert the changes and `git push --set-upstream origin revert-delivery-date` to create the branch and `git push` the changes into the remote repository. Make a pull request and check the changes into the main branch before merging the two branches. Check out the `main` branch to see the changes made.
 
 ## Dockerfile
 
@@ -88,26 +88,26 @@ Step 1: Containerise the Web Application
 - Select the base of your image using the **"FROM"** command. The base of this project would be **python:3.8-slim**.
 - `WORKDIR` will be the working directory and in this case it will be **'/app'**.
 - To **copy** the application files you use `COPY . /app` as **'.'** is setting as the current directory and **'/app'** as the destination.
-- Install Python packages from `requirements.txt` to add the dependencies that is relevant for the task. **Prerequisites** provides the information what is in the the text file.
+- Install Python packages from `requirements.txt` to add the dependencies that is relevant for the task. The `Prerequisites` heading provides the information what is in the the text file.
 - The Flask application should be accessed outside the container as Docker needs to listen on a specified port during runtime. We use the **"EXPOSE"** command on port **5000**.
 - To complete the image a start-up command is required. **"CMD"** would be used to start up the Flask application. This image will be using `CMD ["python","app.py"]` to run the Python file first.
 
 Step 2: Building the Docker Image
-- Build the image using `docker build -t {name of the image} .` as I named my image **'devops'**.
+- Build the image using `docker build -t {name of the image} .` as **'.'** is the current directory.
 
 Step 3: Run the Container into your Local Machine
 - To test the image, use `docker run -p 5000:5000 {name of the image}`. This utilises **port 500** from the local machine to the container to access the application from my local development environment.
 - Use `http://127.0.0.1:5000` in the web browser to test if the information loads up.
 
 Step 4: Push the Image into Docker Hub
-- Tag the Docker image with the relevant information using `docker tag {name of the image} {docker-hub-username}/{image-name}:{tag}`.
+- Tag the Docker image with the relevant information using `docker tag {image-name} {docker-hub-username}/{image-name}:{tag}`.
 - Finally, utilise `docker push {docker-hub-username}/{image-name}:{tag}` to push it into **Docker hub**.
 
 Please check `Dockerfile` and `requirements.txt` in the main branch for the files.
 
 ## Terraform
 
-Terraform will be the foundation for provisioning an Azure Kubernetes Service (AKS) cluster using infrastructure as code (IaC).
+Terraform will be the foundation for provisioning an AKS (Azure Kubernetes Service) cluster using infrastructure as code (IaC).
 
 ### **Defining Networking**
 
@@ -127,10 +127,10 @@ Provisioning the network for the AKS cluster is essential to make sure the netwo
 
 3. Outputs
  - vnet_id: An identity of a virtual network.
- - control_plane_subnet_id: Identity of a subnet of a control plane.
- - worker_node_subnet_id: Identity of a subnet for a worker node.
+ - control_plane_subnet_id: An identity of a subnet of a control plane.
+ - worker_node_subnet_id: An identity of a subnet for a worker node.
  - networking_resource_group_name: Resource group name for the network aspects of the AKS cluster. 
- - aks_nsg_id: Identity for the network security group.
+ - aks_nsg_id: An identity for the network security group.
 
 After configuring the settings, you initalise the directory using `terraform init`. The set up will be on the main branch in the `networking` directory.
 
@@ -141,15 +141,15 @@ Provisioning the cluster for the AKS cluster is essential to make sure the Kuber
 1. Variables
 - aks_cluster_name: The name of the provisioned cluster.
 - cluster_location: The location of the cluster being provisioned.
-- dns_prefix: It defines the DNS prefix of cluster
+- dns_prefix: It defines the DNS prefix of cluster.
 - kubernetes_version: The version of the Kubernetes cluster.
 - service_principal_client_id: This provides the Client ID for the service principal associated with the cluster.
-- service_principal_secret: This will provide the password yo access the cluster.
+- service_principal_secret: This will provide the password to access the cluster.
 
-resource_group_name, vnet_id, control_plane_subnet_id and worker_node_subnet_id are the output variables from the networking module.
+'resource_group_name', 'vnet_id', 'control_plane_subnet_id' and 'worker_node_subnet_id' are the output variables from the networking module.
 
 2. Main
-- azurerm_kubernetes_cluster: You add the variables that will associate with the name, location, resource group name, DNS prefix and the Kubernetes version
+- azurerm_kubernetes_cluster: You add the variables that will associate with the name, location, resource group name, DNS prefix and the Kubernetes version.
 - default_node_pool: This is used to configure the cluster in Azure.
 - service_principal: It is an identity used for applications, hosted services, and automated tools to access the resources.
 
@@ -177,7 +177,7 @@ The inputs used to create the cluster.
 - service_principal_client_id: Azure client ID
 - service_principal_secret: Azure client secret
 
-resource_group_name, vnet_id, control_plane_subnet_id, worker_node_subnet_id and aks_nsg_id are the output variables from the networking module.
+'resource_group_name', 'vnet_id', 'control_plane_subnet_id', 'worker_node_subnet_id' and 'aks_nsg_id' are the output variables from the networking module.
 
 After configuring the settings, you initalise the directory using `terraform init`. The set up will be on the main branch in the `aks-terraform` directory. Once they are all initalised, `terraform apply` to create the cluster in Azure using AKS (Azure Kuberenetes Services).
 
@@ -195,7 +195,7 @@ Kubernetes orchestrates containerised applications to automate scaling, software
 
 ### **Deployment and Service Manifests**
 
-For the Kubernetes deployment process, a manifest file must be created which in this project is named `application-manifest.yaml`. The **flask-app-deployment** is the name for the resource deployment for managing the containerised web application. The file specified to have 2 replica pods while using the rolling strategy and has labels for pod management. Furthermore, a Service manifest named **flask-app-service** was used for internal communication. TCP protocol on **port 80** with a target port of **5000** is the **same** as the expose port in the container. The service type was set to **ClusterIP** for internal usage within the AKS cluster.
+For the Kubernetes deployment process, a manifest file must be created which in this project is named `application-manifest.yaml`. The **flask-app-deployment** is the name for the resource deployment for managing the containerised web application. The file specified to have 2 replica pods while using the rolling strategy and providing labels for pod management. Furthermore, a Service manifest named **flask-app-service** was used for internal communication. TCP protocol on **port 80** with a target port of **5000** is the **same** as the expose port in the container. The service type was set to **ClusterIP** for internal usage within the AKS cluster.
 
 ### **Deployment Strategy**
 
@@ -204,19 +204,19 @@ For the Kubernetes deployment process, a manifest file must be created which in 
 ### **Testing and Validation**
 
 After the application is deployed on the AKS cluster, you test and validate the reliability and the functionality. This involves checking the status of services and pods to confirm exposure is correct within the cluster.
-The user access the application by initiating **port forwarding** to a local machine to allow the interaction with the web application at `http://127.0.0.1:5000`. The testing phase focuses on the orders table and the add order functionality of the application to ensure proper display is present and allows an addition of a order. With validating the steps it aims to make sure that the application performs as expected in the AKS environment.
+The user access the application by initiating **port forwarding** to a local machine to allow the interaction with the web application at `http://127.0.0.1:5000`. The testing phase focuses on the **orders table** and the **add order** functionality of the application to ensure proper display is present and allows an addition of a order to be placed. With validating the steps it aims to make sure that the application performs as expected in the AKS environment.
 
 ### **Hands-on Testing with Kubernetes**
 
 The following commands are used to test
 
-Connect the cluster to your local machine so you can have access to it:
+1. Connect the cluster to your local machine so you can have access to it:
 
 ```
 az aks get-credentials --resource-group [resource_group_name] --name [aks_cluster_name]
 ```
 
-Check the current context:
+2. Check the current context:
 
 ```
 kubectl config get-contexts
@@ -228,37 +228,37 @@ Alternatively to check the cluster you are on:
 kubectl config current-context
 ```
 
-(Optional) If you are not in the current context that you had deployed use the command below to switch:
+3. (Optional) If you are not in the current context that you had deployed use the command below to switch:
 
 ```
 kubectl config use-context {your-aks-context-name}
 ```
 
-To check the status of the services:
+4. To check the status of the services:
 
 ```
 kubectl get services
 ```
 
-Once you are on the correct context, apply the pods into the cluster:
+5. Once you are on the correct context, apply the pods into the cluster:
 
 ```
 kubectl apply -f {your-manifest-file.yaml}
 ```
 
-Check the pods if they are running using:
+6. Check the pods if they are running using:
 
 ```
 Kubectl get pods
 ```
 
-Once the pods are in a running state log in to one of the pods using:
+7. Once the pods are in a running state log in to one of the pods using:
 
 ```
 kubectl port-forward {pod-name} 5000:5000
 ```
 
-Finally, log in via HTTP:
+8. Finally, log in via HTTP:
 
 ```
 http://127.0.0.1:5000/
@@ -274,15 +274,15 @@ CI/CD Pipelines with Azure DevOps is the process of setting up Continuous Integr
 
 ### **Source Repository Configuration**
 
-The source code for our application is hosted on GitHub and select the repository you want to work with.
+The source code for our application is hosted on GitHub and select the repository on GitHub you want to work with.
 
 ### **Starter Pipeline Template**
 
-After selecting the repository in GitHub, select the pipeline to initiate using a **Starter Pipeline template** that provides a foundation to add tasks like Docker image and a Kubernetes file.
+After selecting the repository in GitHub, select the pipeline to initiate using a **Starter Pipeline template** that provides a foundation to add tasks with using Docker image, Kubernetes file and many more.
 
 ### **Pipeline Trigger**:
 
-- The pipeline is defaulted to automatically execute on each push to the main branch of the application repository i.e main (shown in the image below).
+- The pipeline is defaulted to automatically execute on each push to the **main** branch of the application repository i.e main (shown in the image below).
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/9669464c-a47a-4bc6-b2e0-1e866386ce91)
 
@@ -295,11 +295,17 @@ After selecting the repository in GitHub, select the pipeline to initiate using 
 ### **Docker Hub Integration**
 
 1. **Service Connection Setup**:
+
 - Generate a personal access token on Docker Hub.
 - Configured an Azure DevOps service connection using the Docker Hub personal access token.
+  - Name the connection type as **Docker Hub**
+  - Name the Docker ID as your username on Docker Hub.
+  - The password is the Access Token.
+  - Verify the details and save.
 
 2. **Pipeline Docker Image Build and Push**:
-- Type in **'Docker'** in the task search bar and select.
+
+- Type in **'Docker'** in the task search bar and select it.
 - **Container registry**: Select a Docker registry service connection.
 - **Repository**: Name of the image on Docker Hub.
 - Docker task added to the pipeline with the **'buildandPush'** command.
@@ -312,9 +318,14 @@ After selecting the repository in GitHub, select the pipeline to initiate using 
 
 1. **AKS Service Connection**:
 - Established a service connection within Azure DevOps to link the CI/CD pipeline with the AKS cluster securely.
+  - Select 'Azure subscription'.
+  - In 'Cluster', select the name of the cluster which also shows the resource group.
+  - Leave the namespace as 'default'.
+  - Name the service name generic like **AKS-Service-Connection**.
+  - Save the configuration.
 
 2. **Deploy to Kubernetes Task**:
-- Type in **'Kubernetes'** in the task search bar and select.
+- Type in **'Kubernetes'** in the task search bar and select it.
 - Modified the pipeline to include the Deploy to Kubernetes task using the **'deploy'** command.
 - **ConnectionType**: 'azureResourceManager' since it was deployed on on AKS (Azure Kubernetes Services).
 - **AzureSubscriptionConnection**: choose the subscription you want to use.
@@ -366,7 +377,7 @@ The charts presents details of how the cluster is behaving.
 4. **Bytes Read and Written per Second**
 
 - Metrics that measures the amount of data being read from and written to a storage device.
-- 'Bytes Read per Second' is constant with a **few** spikes which is minor but as for 'Writen per Second' it **fluctuates** in between a certain limit.
+- '**Bytes Read per Second**' is consistent with a **few** spikes which is minor but as for '**Writen per Second**' it **fluctuates** in between a certain limit.
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/a9a39e00-ed32-471e-a77c-3f194cc508fb)
 
@@ -390,7 +401,7 @@ Log configurations that are used to analyse the cluster.
 
 3. **Pods Counts with Phase**
 
-- Provides information on the count of pods with different phases; showing the states that it is in such as Pending, Running, or Terminating.
+- Provides information on the count of pods with different phases; showing the states that is in Pending, Running, or Terminating.
 - The insights into pod lifecycle illustrates the cluster's workload is distributed and consistent.
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/190e5d7e-ec5b-4cc1-b3ce-6eacad769b2b)
@@ -441,15 +452,19 @@ There are numbers of ways to respond to alarms that are triggered. They are:
 1. Monitoring
 - Monitor consistently using Azure Monitor, Grafana, Prometheus, or other monitoring solutions.
 - Set up alert rules for key metrics, such as CPU utilization, memory usage, disk I/O, pod health, and AKS-specific metrics.
+
 2. Scaling Resources
 - Scale the AKS cluster to adjust the number of nodes based on workload requirements.
 - Apply Cluster Autoscaler to dynamically adjust the number of nodes in the AKS cluster in response to resource demands.
+
 3. Audits
 - Conduct regular audits of AKS configurations and security settings.
 - Review and update alerting thresholds and response procedures based on the change of requirements.
+
 4. Troubleshooting Procedures
 - Utilise Azure Kubernetes Service Diagnostic (AKS-Diag) for automated cluster diagnostics.
 - Use Azure Monitor logs and insights to identify and troubleshoot issues.
+
 5. Documentation
 - Document common issues for troubleshooting.
 - Note down the steps taken during incident response for analysis to respond efficiently if it occurs.
@@ -467,7 +482,7 @@ Create a Key Vault in Azure by:
 - Choose the subscription and either select a resource group (or create one).
 - Provide a name that is unique for the Key Vault.
 - Select the region for your Key Vault.
-- Once the changes you made were done, '**Review + create**'.
+- Once the changes you made were done, '**Review + create**' to double check the settings.
 - '**Create**' to initiate the deployment of your Azure Key Vault.
 
 ### **Assigning RBAC Roles in Key Vault**
