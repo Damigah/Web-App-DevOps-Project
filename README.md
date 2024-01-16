@@ -381,20 +381,20 @@ Alerts had been set up to ensure that you get notified when limits were exceeded
 There are numbers of ways to respond to alarms that are triggered. They are:
 
 1. Monitoring
-   - Monitor consistently using Azure Monitor, Grafana, Prometheus, or other monitoring solutions.
-   - Set up alert rules for key metrics, such as CPU utilization, memory usage, disk I/O, pod health, and AKS-specific metrics.
+- Monitor consistently using Azure Monitor, Grafana, Prometheus, or other monitoring solutions.
+- Set up alert rules for key metrics, such as CPU utilization, memory usage, disk I/O, pod health, and AKS-specific metrics.
 2. Scaling Resources
-   - Scale the AKS cluster to adjust the number of nodes based on workload requirements.
-   - Apply Cluster Autoscaler to dynamically adjust the number of nodes in the AKS cluster in response to resource demands.
+- Scale the AKS cluster to adjust the number of nodes based on workload requirements.
+- Apply Cluster Autoscaler to dynamically adjust the number of nodes in the AKS cluster in response to resource demands.
 3. Audits
-   - Conduct regular audits of AKS configurations and security settings.
-   - Review and update alerting thresholds and response procedures based on the change of requirements.
+- Conduct regular audits of AKS configurations and security settings.
+- Review and update alerting thresholds and response procedures based on the change of requirements.
 4. Troubleshooting Procedures
-   - Utilise Azure Kubernetes Service Diagnostic (AKS-Diag) for automated cluster diagnostics.
-   - Use Azure Monitor logs and insights to identify and troubleshoot issues.
+- Utilise Azure Kubernetes Service Diagnostic (AKS-Diag) for automated cluster diagnostics.
+- Use Azure Monitor logs and insights to identify and troubleshoot issues.
 5. Documentation
-    - Document common issues for troubleshooting.
-    - Note down the steps taken during incident response for analysis to respond efficiently if it occurs.
+- Document common issues for troubleshooting.
+- Note down the steps taken during incident response for analysis to respond efficiently if it occurs.
 
 ## Azure Key Vault for Secret Management
 
