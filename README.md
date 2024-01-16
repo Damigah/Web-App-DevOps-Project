@@ -12,7 +12,7 @@ Welcome to the Web App DevOps Project repo! This application allows you to effic
 - [Dockerfile](#Dockerfile)
 - [Terraform](#Terraform)
 - [Kubernetes](#Kubernetes)
-- [CI/CD Pipelines with Azure DevOps](#CI/CD-Pipelines-with-Azure-DevOps)
+- [CI/CD Pipelines with Azure DevOps](#CICD-Pipelines-with-Azure-DevOps)
 - [AKS Cluster Monitoring and Alert](#AKS-Cluster-Monitoring-and-Alert)
 - [Azure Key Vault for Secret Management](#Azure-Key-Vault-for-Secret-Management)
 - [Testing Phase](#Testing-Phase)
