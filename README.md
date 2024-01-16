@@ -7,7 +7,7 @@ Welcome to the Web App DevOps Project repo! This application allows you to effic
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Technology Stack](#technology-stack)
-- [Technology Stack](#technology-stack)
+- [The Architecture of The Project](#TheArchitectureofTheProject)
 - [Delivery Date](#DeliveryDate)
 - [Dockerfile](#Dockerfile)
 - [Terraform](#Terraform)
@@ -16,7 +16,7 @@ Welcome to the Web App DevOps Project repo! This application allows you to effic
 - [AKS Cluster Monitoring and Alert](#AKSClusterMonitoringandAlert)
 - [Azure Key Vault for Secret Management](#AzureKeyVaultforSecretManagement)
 - [Testing Phase](#TestingPhase)
-- [The Architecture of The Project](#TheArchitectureofTheProject)
+- [Contributors](#Contributors)
 - [License](#license)
 
 ## Features
@@ -64,17 +64,23 @@ To run the application, you simply need to run the `app.py` script in this repos
 
 - **Database:** The application employs an Azure SQL Database as its database system to store order-related data.
 
+## The Architecture of The Project
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/69d073f5-e76e-4e57-9df9-61f07ac03f67)
+
 ## Delivery Date
 
-**Making Changes in the Main Branch**
+### **Making Changes in the Main Branch**
 
 A delivery date column was added to the main branch into `app.py` and `orders.html` files by merging branches from `feature/add-delivery-date` into `main`. Within the `feature/add-delivery-date` modified the branch to add the delivery date into both files using Visual Studio Code/Git Bash. After making the changes into the branch, utilise `git add . `, `git commit -m "message"` and use `git push --set-upstream origin feature/add-delivery-date` to set up the branch in the **remote repository** and `git push`. Make a **pull request** from `feature/add-delivery-date` into `main` and reviewed the changes. After being satisfied with the changes, merge the two branches.
 
-**Reverting Changes**
+### **Reverting Changes**
 
 It was then not needed to modify the files and had to **revert** the changes back by using `git pull` to fetch the contents in the **remote repository**. Make a feature branch using `git branch revert-delivery-date` from the main branch. Use `git checkout revert-delivery-date` to switch into the branch and used the `git log` command to find the log before merging into `main`. When the appropiate log was found used `git revert {number-of-revert}` to revert the changes and `git push --set-upstream origin revert-delivery-date` and `git push` the changes into the remote repository. Make a pull request and check the changes into the main branch before merging the two branches. Check out the `main` branch to see the changes made.
 
 ## Dockerfile
+
+### **Creating Docker Image**
 
 Creating a Dockerfile which uses all the dependencies and configurations for deployment.
 
@@ -103,7 +109,7 @@ Please check `Dockerfile` and `requirements.txt` in the main branch for the file
 
 Terraform will be the foundation for provisioning an Azure Kubernetes Service (AKS) cluster using infrastructure as code (IaC).
 
-**Defining Networking**
+### **Defining Networking**
 
 Provisioning the network for the AKS cluster is essential to make sure the networking services in Azure functions to your liking. To build the infrastructure it is advisable to use variables, main and outputs terraform files.
 
@@ -128,7 +134,7 @@ Provisioning the network for the AKS cluster is essential to make sure the netwo
 
 After configuring the settings, you initalise the directory using `terraform init`. The set up will be on the main branch in the `networking` directory.
 
-**Defining AKS-Cluster**
+### **Defining AKS-Cluster**
 
 Provisioning the cluster for the AKS cluster is essential to make sure the Kubernetes services in Azure functions how you want it. To build the infrastructure it is advisable to use variables, main and outputs terraform files.
 
@@ -154,7 +160,7 @@ resource_group_name, vnet_id, control_plane_subnet_id and worker_node_subnet_id 
 
 After configuring the settings, you initalise the directory using `terraform init`. The set up will be on the main branch in the `aks-cluster` directory.
 
-**Creating the Cluster**
+### **Creating The AKS Cluster**
 
 The inputs used to create the cluster.
 
@@ -175,7 +181,7 @@ resource_group_name, vnet_id, control_plane_subnet_id, worker_node_subnet_id and
 
 After configuring the settings, you initalise the directory using `terraform init`. The set up will be on the main branch in the `aks-terraform` directory. Once they are all initalised, `terraform apply` to create the cluster in Azure using AKS (Azure Kuberenetes Services).
 
-**Creating a Service Principal**
+### **Creating a Service Principal**
 
 A service principal is an identity to use services, applications and automated tools to access Azure resources. Different levels of restricted access are roles assigned by the service principal, which allows control over which resources can be accessed and at which level.
 
@@ -187,44 +193,48 @@ az ad sp create-for-rbac --name {name} --role contributor --scopes /subscription
 
 Kubernetes orchestrates containerised applications to automate scaling, software deployment and management. 
 
-**Deployment and Service Manifests**
+### **Deployment and Service Manifests**
 
 For the Kubernetes deployment process, a manifest file must be created which in this project is named `application-manifest.yaml`. The **flask-app-deployment** is the name for the resource deployment for managing the containerised web application. The file specified to have 2 replica pods while using the rolling strategy and has labels for pod management. Furthermore, a Service manifest named **flask-app-service** was used for internal communication. TCP protocol on **port 80** with a target port of **5000** is the **same** as the expose port in the container. The service type was set to **ClusterIP** for internal usage within the AKS cluster.
 
-**Deployment Strategy**
+### **Deployment Strategy**
 
 **Rolling update** is utilised because when the new pods are ready, they gradually switch with the old pods without any downtime. This allows one pod to deploy while the other becomes temporarily unavailable to maintain high availability. The Rolling Updates strategy aligns with the application's internal nature, enabling updates without disrupting ongoing operations. It guarantees a smooth transition from old to new pods, allowing efficient maintenance and continuous improvement.
 
-**Testing and Validation**
+### **Testing and Validation**
 
 After the application is deployed on the AKS cluster, you test and validate the reliability and the functionality. This involves checking the status of services and pods to confirm exposure is correct within the cluster.
 The user access the application by initiating **port forwarding** to a local machine to allow the interaction with the web application at `http://127.0.0.1:5000`. The testing phase focuses on the orders table and the add order functionality of the application to ensure proper display is present and allows an addition of a order. With validating the steps it aims to make sure that the application performs as expected in the AKS environment.
 
-**Distribution and Accessibility**
+### **Distribution and Accessibility**
 
 For the application to be distributed within the organisation **without** depending on port forwarding, the user would utilise a **Load Balancer** to expose the service externally or a **Ingress resource**. This would make the application accessible to other **internal users** securely. For **external access**, users would go through extra security measures such as authentication and authorisation, possibly using tools like **OAuth** (authorisation to another application) or **Azure AD** (Azure Active Directory). Consideration for network policies and secure communication (HTTPS) would be essential to protect the application and its data from potential external threats. Documentation and communication channels would be established to guide users on accessing the application securely.
 
 ## CI/CD Pipelines with Azure DevOps
 
-**Source Repository Configuration**
+CI/CD Pipelines with Azure DevOps is the process of setting up Continuous Integration (CI) and Continuous Deployment (CD) workflows using Azure DevOps services. CI/CD is a software development process to improve the development process by automating the building, testing, and deployment of applications.
+
+### **Source Repository Configuration**
 
 The source code for our application is hosted on GitHub and select the repository you want to work with.
 
-**Starter Pipeline Template**
+### **Starter Pipeline Template**
 
 After selecting the repository in GitHub, select the pipeline to initiate using a **Starter Pipeline template** that provides a foundation to add tasks like Docker image and a Kubernetes file.
 
-**Pipeline Trigger**:
+### **Pipeline Trigger**:
+
 - The pipeline is defaulted to automatically execute on each push to the main branch of the application repository i.e main (shown in the image below).
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/9669464c-a47a-4bc6-b2e0-1e866386ce91)
 
-**Pipeline Pool**
+### **Pipeline Pool**
+
 - This is where the job will run.
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/62a1994d-2160-4571-bae4-b13efc9ff9e4)
 
-**Docker Hub Integration**
+### **Docker Hub Integration**
 
 1. **Service Connection Setup**:
 - Generate a personal access token on Docker Hub.
@@ -240,7 +250,7 @@ After selecting the repository in GitHub, select the pipeline to initiate using 
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/9952128e-8fa9-48d5-9658-d1dbfc2bde70)
 
-**AKS Integration**
+### **AKS Integration**
 
 1. **AKS Service Connection**:
 - Established a service connection within Azure DevOps to link the CI/CD pipeline with the AKS cluster securely.
@@ -256,7 +266,7 @@ After selecting the repository in GitHub, select the pipeline to initiate using 
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/f5cc3d91-6409-49e8-a52d-6ad8306a06e0)
 
-**Validation Steps**
+### **Validation Steps**
 
 1. **CI/CD Pipeline Execution**:
 - Successfully ran the CI/CD pipeline to build and push the Docker image from Docker Hub. It was then deploy to the AKS cluster.
@@ -270,7 +280,7 @@ After selecting the repository in GitHub, select the pipeline to initiate using 
 
 The monitoring and alerting setup for the AKS cluster is important when it comes to DevOps pipeline. It makes sure that the cluster operates efficiently and to detect potential issues to be sorted.
 
-**Metrics Explorer Charts**
+### **Metrics Explorer Charts**
 
 The charts presents details of how the cluster is behaving.
 
@@ -302,7 +312,7 @@ The charts presents details of how the cluster is behaving.
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/a9a39e00-ed32-471e-a77c-3f194cc508fb)
 
-**Log Analytics**
+### **Log Analytics**
 
 Log configurations that are used to analyse the cluster.
 
@@ -348,7 +358,7 @@ Log configurations that are used to analyse the cluster.
 
 A query was saved for each of these logs to be accessed when needed. 
 
-**Alert Configuration**
+### **Alert Configuration**
 
 Alerts had been set up to ensure that you get notified when limits were exceeded to take precautions.
 
@@ -357,6 +367,7 @@ Alerts had been set up to ensure that you get notified when limits were exceeded
 - The alarm gets triggered when the usage exceeds over **90%**.
 - Checks every 5 minutes, with a 15-minute loopback.
 - Notified through email.
+- The summary of the set up is shown in a image below.
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/14f32b57-cd88-4135-ac5e-67588100e4ba)
 
@@ -365,7 +376,7 @@ Alerts had been set up to ensure that you get notified when limits were exceeded
 - The alarm gets triggered when the usage exceeds over **80%**.
 - This will potentially affect the performance which reduces the application performance.
 
-**Response Strategies to Alarms**
+### **Response Strategies to Alarms**
 
 There are numbers of ways to respond to alarms that are triggered. They are:
 
@@ -389,7 +400,7 @@ There are numbers of ways to respond to alarms that are triggered. They are:
 
 Azure Key Vault is a powerful solution for a secure storage and management of sensitive information. It manages sensitive information that provides a scalable and centralised platform for safeguarding sensitive information.
 
-**Creating an Azure Key Vault**
+### **Creating an Azure Key Vault**
 
 Create a Key Vault in Azure by:
 
@@ -401,7 +412,7 @@ Create a Key Vault in Azure by:
 - Once the changes you made were done, '**Review + create**'.
 - '**Create**' to initiate the deployment of your Azure Key Vault.
 
-**Assigning RBAC Roles in Key Vault**
+### **Assigning RBAC Roles in Key Vault**
 
 Assigning Role-Based Access Control to users by:
 
@@ -412,7 +423,7 @@ Assigning Role-Based Access Control to users by:
 - In the '**Members**', go on '**Select members**'.
 - After adding users to the Key Vault, '**Review + assign**'.
 
-**Adding Secrets in Key Vault**
+### **Adding Secrets in Key Vault**
 
 The following steps shows how to add secrets:
 
@@ -425,13 +436,14 @@ The following steps shows how to add secrets:
 - Make sure that they both the secrets and database credentials in `app.py` have the same name in order to integrate with each other.
 
 The secrets in Azure key Vault:
+
 ![Screenshot 2024-01-15 195932](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/500c5bef-b930-4f69-9142-0199346e847e)
 
 The database connection in `app.py`:
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/72a7847a-0396-43d3-a724-19a20fc415b8)
 
-**User-Assigned Managed Identity**
+### **User-Assigned Managed Identity**
 
 It is a secure access to various Azure services. Identities can then be used to authenticate and authorize access to other Azure resources.
 
@@ -441,7 +453,7 @@ To create a user-assigned managed identity, use the following command:
 az identity create -g {Resource-Group-name} -n {name-the-User-Identity}
 ```
 
-**Integrating Azure Key Vault with AKS**
+### **Integrating Azure Key Vault with AKS**
 
 Using Azure Key Vault with AKS allows application running **without** exposing credentials. Setting this up includes applying Managed Identity for AKS, and assigning the necessary Key Vault permissions to the managed identity.
 
@@ -465,7 +477,7 @@ az role assignment create --role "Key Vault Secrets Officer" \
 --scope subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.KeyVault/vaults/{key-vault-name}
 ```
 
-**Python Libaries To Add**
+### **Python Libaries To Add**
 
 In order for the key vault and Azure identity to work in Python, install the following:
 
@@ -477,7 +489,7 @@ After installing the packages, add this to the top of Python script to activate 
 - **from azure.identity import ManagedIdentityCredential**
 - **from azure.keyvault.secrets import SecretClient**
 
-**Requirements To Add**
+### **Requirements To Add**
 
 After installing the dependancies, you need to add them in your `requirements.txt` file in order for it to work. Use the command `conda list` to showcase your packages in the current environment. The packages you need to find are:
 
@@ -493,10 +505,6 @@ They will both list the version next to them to use.
 - Use the command `kubectl port-forward {name-of-pod} 5000:5000` to access the application.
 - Add a new order to see if it will intract with the database in which it got stored.
 - Ask a colleague to see if they see your order on their screen (optional).
-
-## The Architecture of The Project
-
-![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/69d073f5-e76e-4e57-9df9-61f07ac03f67)
 
 ## Contributors 
 
