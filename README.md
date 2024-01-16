@@ -76,7 +76,7 @@ A delivery date column was added to the main branch into `app.py` and `orders.ht
 
 ### **Reverting Changes**
 
-It was then not needed to modify the files and had to **revert** the changes back by using `git pull` to fetch the contents in the **remote repository** (common practice when working in a group). Make a feature branch using `git branch revert-delivery-date` from the main branch. Use `git checkout revert-delivery-date` to switch into the branch and used the `git log` command to find the log before merging into `main`. When the appropiate log was found use `git revert {number-of-revert}` to revert the changes and `git push --set-upstream origin revert-delivery-date` to create the branch and `git push` the changes into the remote repository. Make a pull request and check the changes into the main branch before merging the two branches. Check out the `main` branch to see the changes made.
+It was then not needed to modify the files and had to **revert** the changes back by using `git pull` to fetch the contents in the **remote repository** (common practice when working in a group). Make a feature branch using `git branch revert-delivery-date` from the main branch. Use `git checkout revert-delivery-date` to switch into the branch and used the `git log` command to find the log before merging into `main`. When the appropiate log was found use `git revert {number-of-revert}` to revert the changes. Utilise `git add .` to **stage** the changes, `git commit -m "message"` to the **local** repository and `git push --set-upstream origin revert-delivery-date` to create the branch. Finally, `git push` the changes into the remote repository. Make a pull request and check the changes into the main branch before merging the two branches. Check out the `main` branch to see the changes made.
 
 ## Dockerfile
 
@@ -96,7 +96,7 @@ Step 2: Building the Docker Image
 - Build the image using `docker build -t {name of the image} .` as **'.'** is the current directory.
 
 Step 3: Run the Container into your Local Machine
-- To test the image, use `docker run -p 5000:5000 {name of the image}`. This utilises **port 500** from the local machine to the container to access the application from my local development environment.
+- To test the image, use `docker run -p 5000:5000 {name of the image}`. This utilises **port 5000** from the local machine to the container to access the application from my local development environment.
 - Use `http://127.0.0.1:5000` in the web browser to test if the information loads up.
 
 Step 4: Push the Image into Docker Hub
