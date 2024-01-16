@@ -181,6 +181,9 @@ The inputs used to create the cluster.
 
 After configuring the settings, you initalise the directory using `terraform init`. The set up will be on the main branch in the `aks-terraform` directory. Once they are all initalised, `terraform apply` to create the cluster in Azure using AKS (Azure Kuberenetes Services).
 
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/944e068d-8fae-4baf-8f84-cae4b0638a79)
+
+
 ### **Creating a Service Principal**
 
 A service principal is an identity to use services, applications and automated tools to access Azure resources. Different levels of restricted access are roles assigned by the service principal, which allows control over which resources can be accessed and at which level.
@@ -222,11 +225,17 @@ az aks get-credentials --resource-group [resource_group_name] --name [aks_cluste
 kubectl config get-contexts
 ```
 
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/a05a13f1-9a71-4f9a-83c9-3a52de1b0ae5)
+
+
 Alternatively to check the cluster you are on:
 
 ```
 kubectl config current-context
 ```
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/55432760-d6ae-4773-ab2e-2f1260a8f79b)
+
 
 3. (Optional) If you are not in the current context that you had deployed use the command below to switch:
 
@@ -234,11 +243,17 @@ kubectl config current-context
 kubectl config use-context {your-aks-context-name}
 ```
 
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/573f0865-a74b-4970-af99-84580e339e7d)
+
+
 4. To check the status of the services:
 
 ```
 kubectl get services
 ```
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/9b2ab6a3-b3ad-4fd5-b158-3f1d16c7b881)
+
 
 5. Once you are on the correct context, apply the pods into the cluster:
 
@@ -252,17 +267,27 @@ kubectl apply -f {your-manifest-file.yaml}
 Kubectl get pods
 ```
 
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/d077aaea-6ca8-4095-91c7-ff2124f23a64)
+
+
 7. Once the pods are in a running state log in to one of the pods using:
 
 ```
 kubectl port-forward {pod-name} 5000:5000
 ```
 
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/2eb5fb93-d25d-4736-8206-1064f2295217)
+
+
 8. Finally, log in via HTTP:
 
 ```
 http://127.0.0.1:5000/
 ```
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/abc166ba-5b5a-4397-9c6b-8b248e1ea2de)
+
+To exit, press '**CTRL + C**'
 
 ### **Distribution and Accessibility**
 
@@ -302,6 +327,8 @@ After selecting the repository in GitHub, select the pipeline to initiate using 
   - Name the Docker ID as your username on Docker Hub.
   - The password is the Access Token.
   - Verify the details and save.
+ 
+![Screenshot 2024-01-16 182055](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/34579dad-893d-4f2d-bb67-35f6c11692e3)
 
 2. **Pipeline Docker Image Build and Push**:
 
@@ -323,6 +350,8 @@ After selecting the repository in GitHub, select the pipeline to initiate using 
   - Leave the namespace as 'default'.
   - Name the service name generic like **AKS-Service-Connection**.
   - Save the configuration.
+
+![Screenshot 2024-01-16 182329](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/6fa2e2d7-5610-4f4b-8262-309af18f822e)
 
 2. **Deploy to Kubernetes Task**:
 - Type in **'Kubernetes'** in the task search bar and select it.
@@ -578,6 +607,8 @@ They will both list the version next to them to use.
 - Use the command `kubectl port-forward {name-of-pod} 5000:5000` to access the application.
 - Add a new order to see if it will intract with the database in which it got stored.
 - Ask a colleague to see if they see your order on their screen (optional).
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/4a9f4ec5-b462-44c6-ab15-80441b9d2470)
 
 ## Contributors 
 
