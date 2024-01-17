@@ -1,6 +1,6 @@
 # Web-App-DevOps-Project
 
-Welcome to the Web App DevOps Project repo! This application allows you to efficiently manage and track orders for a potential business. It provides an intuitive user interface for viewing existing orders and adding new ones.
+Welcome to the Web App DevOps Project repository! This application allows you to efficiently manage and track orders for a potential business. It provides an intuitive user interface for viewing existing orders and adding new ones.
 
 ## Table of Contents
 
@@ -295,7 +295,11 @@ For the application to be distributed within the organisation **without** depend
 
 ## CI/CD Pipelines with Azure DevOps
 
-CI/CD Pipelines with Azure DevOps is the process of setting up Continuous Integration (CI) and Continuous Deployment (CD) workflows using Azure DevOps services. CI/CD is a software development process to improve the development process by automating the building, testing, and deployment of applications.
+CI/CD Pipelines with Azure DevOps is the process of setting up **Continuous Integration (CI)** and **Continuous Delivery/Deployment (CD)** workflows using Azure DevOps services. CI/CD is a software development process to improve the development process by automating the building, testing, and deployment of applications.
+
+**Continuous Integration (CI)** where developers **integrate** code changes into a shared repository. Each integration is checked by an automated build (including tests) to detect integration errors as early as possible.
+
+**Continuous Delivery (CD)** is a software engineering approach in which code changes are **automatically** built, tested, and prepared for production release. 
 
 ### **Source Repository Configuration**
 
@@ -308,6 +312,8 @@ After selecting the repository in GitHub, select the pipeline to initiate using 
 ### **Pipeline Trigger**:
 
 - The pipeline is defaulted to automatically execute on each push to the **main** branch of the application repository i.e main (shown in the image below).
+- For testing purposes, you name it the branch you are testing it out on.
+- This is where **Continuous Integration (CI)** comes into play to test changes.
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/9669464c-a47a-4bc6-b2e0-1e866386ce91)
 
@@ -368,6 +374,8 @@ After selecting the repository in GitHub, select the pipeline to initiate using 
 
 1. **CI/CD Pipeline Execution**:
 - Successfully ran the CI/CD pipeline to build and push the Docker image from Docker Hub. It was then deploy to the AKS cluster.
+- Used `kubectl get pods` to see if the application was pushed and it was displayed in the cluster.
+- This is where **Continuous Delivery (CD)** comes into play as you are **deploying** the application.  
 
 2. **Testing the Deployed Cluster** 
 - **Monitor** the status of the pod within the AKS cluster.
@@ -524,7 +532,7 @@ Assigning Role-Based Access Control to users by:
 - Select the '**Access control (IAM)**' tab from the menu.
 - Select '**+ Add button**' then choose 'Add a role assignment'.
 - Select 'Key Vault Administrator' from the list.
-- In the '**Members**', go on '**Select members**'.
+- In the '**Members**', go on '**Select members**' and select the member you want to add.
 - After adding users to the Key Vault, '**Review + assign**'.
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/88f84058-b855-4542-924f-9b7248b894b5)
