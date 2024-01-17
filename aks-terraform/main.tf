@@ -15,19 +15,15 @@ provider "azurerm" {
   tenant_id       = "" # Enter your tenent ID
 }
 
-# main.tf
-
 module "networking" {
   source = "./networking-module"
 
   # Input variables for the networking module
-  resource_group_name = "networking-rg"
-  location           = "UK South"
-  vnet_address_space = ["10.0.0.0/16"]
+  resource_group_name = "networking-rg" # Creating the resource group name
+  location           = "UK South" # Location of the Cluster
+  vnet_address_space = ["10.0.0.0/16"] # The address space specifies the range of IP addresses that can be used within the virtual network.
 
 }
-
-# main.tf
 
 module "aks_cluster" {
   source = "./aks-cluster-module"
