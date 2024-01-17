@@ -16,6 +16,7 @@ Welcome to the Web App DevOps Project repository! This application allows you to
 - [AKS Cluster Monitoring and Alert](#AKS-Cluster-Monitoring-and-Alert)
 - [Azure Key Vault for Secret Management](#Azure-Key-Vault-for-Secret-Management)
 - [Testing Phase](#Testing-Phase)
+- [The Resource Group in The Project](#The-Resource-Group-in-The-Project)
 - [Contributors](#Contributors)
 - [License](#license)
 
@@ -625,6 +626,10 @@ They will both list the version next to them to use.
 - Ask a colleague to see if they see your order on their screen (optional).
 
 ![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/4a9f4ec5-b462-44c6-ab15-80441b9d2470)
+
+## The Resource Group in The Project
+
+![image](https://github.com/Damigah/Web-App-DevOps-Project/assets/124197859/4585dbc5-08b9-48e2-9e00-3dac9263f098)
 
 ## Contributors 
 
