@@ -633,7 +633,8 @@ They will both list the version next to them to use.
 
 ## Contributors 
 
-- [Maya Iuga]([https://github.com/yourusername](https://github.com/maya-a-iuga))
+- [Maya Iuga](https://github.com/maya-a-iuga)
+- [Seyed-Reza Damigah](https://github.com/Damigah)
 
 ## License
 
