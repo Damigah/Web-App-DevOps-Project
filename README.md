@@ -193,6 +193,23 @@ A service principal is an identity to use services, applications and automated t
 az ad sp create-for-rbac --name {name} --role contributor --scopes /subscriptions/{your-subscription-id}
 ```
 
+**If 2 or More Directories Are Present**
+
+1. login to the tenant ID to access the Azure directory:
+```
+az login --tenant {tenant-id} --allow-no-subscriptions
+```
+
+2. Set the correct subscription using:
+```
+az account set --subscription {your-subscription-uuid}
+```
+
+3. Finally to create the service principal use:
+```
+az ad sp create-for-rbac --name {name} --role contributor --scopes /subscriptions/{your-subscription-id}
+```
+
 ## Kubernetes
 
 Kubernetes orchestrates containerised applications to automate scaling, software deployment and management. 
